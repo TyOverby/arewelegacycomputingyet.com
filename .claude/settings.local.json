@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:en.wikipedia.org)",
+      "WebSearch",
+      "WebFetch(domain:www.compart.com)",
+      "WebFetch(domain:unicode-explorer.com)",
+      "Bash(chmod:*)",
+      "Bash(/home/tyoverby/workspace/arewelegacycomputingyet.com/legacy_computing_table.sh)"
+    ]
+  }
+}

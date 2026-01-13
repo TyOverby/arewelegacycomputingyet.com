@@ -1,0 +1,9 @@
+
+This image is a rectangle with holes punched out of it.
+You shouldn't be able to see any gaps between rows or columns.
+
+ 🬴🬴🬴🬴🬴🬴🬴🬴▌
+ 🬴🬴🬴🬴🬴🬴🬴🬴▌
+ 🬴🬴🬴🬴🬴🬴🬴🬴▌
+ 🬴🬴🬴🬴🬴🬴🬴🬴▌
+
