@@ -6,7 +6,12 @@
       "WebFetch(domain:www.compart.com)",
       "WebFetch(domain:unicode-explorer.com)",
       "Bash(chmod:*)",
-      "Bash(/home/tyoverby/workspace/arewelegacycomputingyet.com/legacy_computing_table.sh)"
+      "Bash(/home/tyoverby/workspace/arewelegacycomputingyet.com/legacy_computing_table.sh)",
+      "Bash(uv init:*)",
+      "Bash(uv add:*)",
+      "Bash(uv run:*)",
+      "Bash(find:*)",
+      "Bash(/home/tyoverby/workspace/arewelegacycomputingyet.com/font-codepoint-checker/check_fonts.sh:*)"
     ]
   }
 }
