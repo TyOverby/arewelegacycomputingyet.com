@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are We Legacy Computing Yet?</title>
+    <style>
+        :root {
+            --bg: #1a1a2e;
+            --fg: #eaeaea;
+            --accent: #00d4aa;
+            --muted: #888;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: ui-monospace, 'Cascadia Code', 'Fira Code', Menlo, monospace;
+            background: var(--bg);
+            color: var(--fg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        h1 {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+        .answer {
+            font-size: clamp(2rem, 8vw, 5rem);
+            color: var(--accent);
+            margin: 2rem 0;
+        }
+        .subtitle {
+            color: var(--muted);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+        .blocks {
+            font-size: 2rem;
+            margin: 2rem 0;
+            letter-spacing: 0.5rem;
+        }
+        a {
+            color: var(--accent);
+        }
+        footer {
+            margin-top: 3rem;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Are We Legacy Computing Yet?</h1>
+    <div class="blocks">🬀 🬁 🬂 🬃 🬄 🬅 🬆 🬇</div>
+    <div class="answer">Not yet.</div>
+    <p class="subtitle">
+        Tracking support for Unicode's "Symbols for Legacy Computing" (U+1FB00-U+1FBFF)
+        and its supplement block (U+1CC00-U+1CEBF) in modern terminal emulators and fonts.
+    </p>
+    <footer>
+        <a href="https://github.com/tyoverby/arewelegacycomputingyet.com">View on GitHub</a>
+    </footer>
+</body>
+</html>
