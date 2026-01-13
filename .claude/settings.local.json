@@ -11,7 +11,9 @@
       "Bash(uv add:*)",
       "Bash(uv run:*)",
       "Bash(find:*)",
-      "Bash(/home/tyoverby/workspace/arewelegacycomputingyet.com/font-codepoint-checker/check_fonts.sh:*)"
+      "Bash(/home/tyoverby/workspace/arewelegacycomputingyet.com/font-codepoint-checker/check_fonts.sh:*)",
+      "Bash(/home/tyoverby/workspace/arewelegacycomputingyet.com/tests/legacy_computing_supplement_table.sh)",
+      "Bash(/home/tyoverby/workspace/arewelegacycomputingyet.com/tests/legacy_computing_table.sh:*)"
     ]
   }
 }

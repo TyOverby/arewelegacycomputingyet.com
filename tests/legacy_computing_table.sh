@@ -58,6 +58,10 @@ print_char() {
 # Function to check if a code point is assigned
 is_assigned() {
     local code=$1
+    # Reserved: U+1FB93
+    if (( code == 0x1FB93 )); then
+        return 1
+    fi
     # Unassigned range: U+1FBFB-U+1FBFF (print up through U+1FBFA)
     if (( code >= 0x1FBFB && code <= 0x1FBFF )); then
         return 1
@@ -160,3 +164,13 @@ for col in {0..15}; do
     fi
 done
 echo "${BR}"
+
+echo ""
+echo "Legend:"
+echo -e "  ${CYAN}■${RESET} Block sextants (1FB00-1FB3B)"
+echo -e "  ${MAGENTA}■${RESET} Smooth mosaic diagonals & triangular blocks (1FB3C-1FB6F)"
+echo -e "  ${BLUE}■${RESET} Block elements, shades & fills (1FB70-1FB9F)"
+echo -e "  ${GREEN}■${RESET} Character cell diagonals (1FBA0-1FBAF)"
+echo -e "  ${YELLOW}■${RESET} Terminal graphic characters (1FBB0-1FBCA)"
+echo -e "  ${WHITE}■${RESET} Diagonals, geometric shapes & segmented digits (1FBCB-1FBFA)"
+echo -e "  ${DIM}·${RESET}  Reserved/Unassigned"
