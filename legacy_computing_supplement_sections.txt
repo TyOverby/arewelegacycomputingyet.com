@@ -1,0 +1,20 @@
+Game sprites
+Rule segments
+Schematic symbols
+Box drawing
+Separated mosaic
+Circle segments
+Fill
+Emoticon
+Terminal graphic
+Lines with tick marks
+Faces
+Icons
+Chess symbols
+Outlined uppercase Latin alphabet
+Outlined digits
+Block mosaic
+Dashed lines
+Large type pieces
+Block elements
+Smalltalk symbols
