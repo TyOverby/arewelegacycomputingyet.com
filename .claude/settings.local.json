@@ -18,5 +18,9 @@
       "Bash(python3:*)",
       "Bash(ls:*)"
     ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true
   }
 }

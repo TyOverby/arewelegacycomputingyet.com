@@ -2,9 +2,14 @@
 
 ## Project Overview
 
-**arewelegacycomputingyet.com** is a research project investigating support for Unicode's "Symbols for Legacy Computing" (U+1FB00-U+1FBFF) and its supplement block (U+1CC00-U+1CEBF) in modern terminal emulators and fonts.
+**arewelegacycomputingyet.com** is a research project investigating support for
+Unicode's "Symbols for Legacy Computing" (U+1FB00-U+1FBFF) and its supplement
+block (U+1CC00-U+1CEBF) in modern terminal emulators and fonts.
 
-The project name follows the "Are we X yet?" meme format, asking whether modern systems properly support these legacy computing symbols which include sextant blocks, block mosaics, diagonal lines, 7-segment digits, and retro game sprites.
+The project name follows the "Are we X yet?" meme format, asking whether modern
+systems properly support these legacy computing symbols which include sextant
+blocks, block mosaics, diagonal lines, 7-segment digits, and retro game
+sprites.
 
 ## Repository Structure
 
@@ -14,11 +19,12 @@ The project name follows the "Are we X yet?" meme format, asking whether modern 
 │   ├── check_fonts.sh          # Test multiple fonts
 │   └── pyproject.toml          # Python project config (uses uv)
 ├── terminal-emulators/reports/ # Analysis of terminal emulator implementations
-│   ├── alacritty.md           # Rust-based, procedural glyph drawing
-│   ├── ghostty.md             # Zig-based, sprite font system
-│   ├── kitty.md               # C-based, box font with 4x supersampling
-│   ├── vte.md                 # C/Cairo, 5×5 bitmap patterns
-│   └── xterm-js.md            # TypeScript/WebGL, SVG paths
+│   ├── alacritty.md            # Rust-based, procedural glyph drawing
+│   ├── ghostty.md              # Zig-based, sprite font system
+│   ├── kitty.md                # C-based, box font with 4x supersampling
+│   ├── vte.md                  # C/Cairo, 5×5 bitmap patterns
+│   └── xterm-js.md             # TypeScript/WebGL, SVG paths
+├── terminal-emulators/*.csv    # Compatibility matrix
 ├── sources/                    # Unicode specification PDFs
 └── tests/                      # Visual test scripts and output
     ├── legacy_computing_table.sh           # U+1FB00 block table
@@ -59,4 +65,5 @@ uv run python font_codepoint_checker.py /path/to/font.ttf
 - **Sextants**: 6-part cell divisions (2×3 grid)
 - **Octants**: 8-part cell divisions (2×4 grid)
 - **Smooth Mosaics**: Block elements with curved edges
-- **Procedural Rendering**: Terminal emulators often bypass fonts and draw these symbols directly using geometric primitives
+- **Procedural Rendering**: Terminal emulators often bypass fonts and draw
+  these symbols directly using geometric primitives

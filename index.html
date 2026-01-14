@@ -10,6 +10,8 @@
             --fg: #eaeaea;
             --accent: #00d4aa;
             --muted: #888;
+            --table-bg: #252540;
+            --border: #3a3a5a;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -20,13 +22,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             padding: 2rem;
-            text-align: center;
         }
         h1 {
             font-size: clamp(1.5rem, 5vw, 3rem);
             margin-bottom: 1rem;
+            text-align: center;
         }
         .answer {
             font-size: clamp(2rem, 8vw, 5rem);
@@ -37,6 +38,8 @@
             color: var(--muted);
             max-width: 600px;
             line-height: 1.6;
+            text-align: center;
+            margin-bottom: 2rem;
         }
         .blocks {
             font-size: 2rem;
@@ -51,9 +54,93 @@
             color: var(--muted);
             font-size: 0.9rem;
         }
+
+        /* Filter toggle */
+        .filter-toggle {
+            display: flex;
+            gap: 0;
+            margin-bottom: 2rem;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .filter-toggle button {
+            background: var(--table-bg);
+            color: var(--fg);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: background 0.2s, color 0.2s;
+        }
+        .filter-toggle button:not(:last-child) {
+            border-right: 1px solid var(--border);
+        }
+        .filter-toggle button:hover {
+            background: var(--border);
+        }
+        .filter-toggle button.active {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        /* Table visibility based on filter */
+        body.show-all .table-important {
+            display: none;
+        }
+        body.show-important .table-all {
+            display: none;
+        }
+
+        /* Table styles */
+        .table-section {
+            margin: 2rem 0;
+            width: 100%;
+            max-width: 900px;
+        }
+        .table-section h2 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--table-bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: rgba(0, 212, 170, 0.1);
+            font-weight: 600;
+        }
+        td.full {
+            color: #4ade80;
+        }
+        td.partial {
+            color: #fbbf24;
+        }
+        td.none {
+            color: #f87171;
+        }
+        td.unknown {
+            color: var(--muted);
+        }
+        .totals-row {
+            background: rgba(0, 212, 170, 0.05);
+        }
+        .totals-row td {
+            border-bottom: none;
+        }
     </style>
 </head>
-<body>
+<body class="show-important">
     <h1>Are We Legacy Computing Yet?</h1>
     <div class="blocks">🬀 🬁 🬂 🬃 🬄 🬅 🬆 🬇</div>
     <div class="answer">Not yet.</div>
@@ -61,8 +148,88 @@
         Tracking support for Unicode's "Symbols for Legacy Computing" (U+1FB00-U+1FBFF)
         and its supplement block (U+1CC00-U+1CEBF) in modern terminal emulators and fonts.
     </p>
+
+    <div class="filter-toggle">
+        <button id="btn-important" class="active" onclick="setFilter('important')">Important</button>
+        <button id="btn-all" onclick="setFilter('all')">All</button>
+    </div>
+
+    
+    <div class="table-section">
+        <h2>Symbols for Legacy Computing (U+1FB00-U+1FBFF)</h2>
+        
+        <table id="main-all" class="table-all">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>alacritty</th><th>kitty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Block mosaic</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Smooth mosaic</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Window title bar</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Rectangular shade</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Fill</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Diagonal fill</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Triangular shade</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Character cell diagonals</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Light solid line with stroke</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Terminal graphic</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Arrows</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Negative terminal graphic</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Geometric shapes</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Segmented digits</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>85%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>0%</strong></td></tr>
+            </tbody>
+        </table>
+    
+        
+        <table id="main-important" class="table-important">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>alacritty</th><th>kitty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Block mosaic</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Smooth mosaic</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Rectangular shade</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Fill</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Diagonal fill</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Character cell diagonals</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Geometric shapes</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>100%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>0%</strong></td></tr>
+            </tbody>
+        </table>
+    
+    </div>
+    
+    <div class="table-section">
+        <h2>Legacy Computing Supplement (U+1CC00-U+1CEBF)</h2>
+        
+        <table id="supplement-all" class="table-all">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>alacritty</th><th>kitty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Game sprites</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Rule segments</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Schematic symbols</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Box drawing</td><td class="partial">80%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Fill</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Emoticon</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Terminal graphic</td><td class="partial">12%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Lines with tick marks</td><td class="unknown">?</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Faces</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Icons</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Chess symbols</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Outlined uppercase Latin alphabet</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Outlined digits</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Dashed lines</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Large type pieces</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Block elements</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Smalltalk symbols</td><td class="none">0%</td><td class="unknown">?</td><td class="unknown">?</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>48%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>0%</strong></td></tr>
+            </tbody>
+        </table>
+    
+        
+        <table id="supplement-important" class="table-important">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>alacritty</th><th>kitty</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Box drawing</td><td class="partial">80%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="unknown">?</td><td class="unknown">?</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>99%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>0%</strong></td></tr>
+            </tbody>
+        </table>
+    
+    </div>
+    
+
     <footer>
         <a href="https://github.com/tyoverby/arewelegacycomputingyet.com">View on GitHub</a>
     </footer>
+
+    <script>
+        function setFilter(filter) {
+            document.body.className = 'show-' + filter;
+            document.getElementById('btn-important').classList.toggle('active', filter === 'important');
+            document.getElementById('btn-all').classList.toggle('active', filter === 'all');
+        }
+    </script>
 </body>
 </html>
