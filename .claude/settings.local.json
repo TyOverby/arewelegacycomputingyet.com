@@ -15,7 +15,8 @@
       "Bash(/home/tyoverby/workspace/arewelegacycomputingyet.com/tests/legacy_computing_supplement_table.sh)",
       "Bash(/home/tyoverby/workspace/arewelegacycomputingyet.com/tests/legacy_computing_table.sh:*)",
       "Bash(tree:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(ls:*)"
     ]
   }
 }

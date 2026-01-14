@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+  <g transform="translate(0, 560) scale(1, -1)">
+    <path d="M270 560V470H0V560ZM270 -70V-160H0V-70ZM407 -160 497 -70H720V-160ZM497 470 407 560H720V470ZM360 470 630 200 360 -70V155H80V245H360Z" fill="currentColor"/>
+  </g>
+</svg>
