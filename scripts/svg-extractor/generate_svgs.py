@@ -307,7 +307,7 @@ def generate_test_html(output_dir, block_config):
 </html>
 '''
 
-    html_path = os.path.join(output_dir, "test.html")
+    html_path = os.path.join(output_dir, "index.html")
     with open(html_path, "w") as f:
         f.write(html_content)
     print(f"   Test HTML saved to: {html_path}")
