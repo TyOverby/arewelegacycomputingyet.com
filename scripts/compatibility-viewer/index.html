@@ -118,6 +118,9 @@
             color: #888;
             margin-bottom: 10px;
         }
+        .info p {
+            margin: 4px 0;
+        }
     </style>
 </head>
 <body>
@@ -137,7 +140,10 @@
         </div>
     </div>
 
-    <p class="info">Click cells to cycle: empty → yes → no → maybe → empty</p>
+    <div class="info">
+        <p><strong>Click</strong> a cell to cycle: empty → yes → no → maybe → empty</p>
+        <p><strong>Shift-click</strong> to fill a range from the previous click to the current cell with the same state</p>
+    </div>
 
     <div class="table-container">
         <table id="char-table"></table>

@@ -6,61 +6,138 @@
     <title>Are We Legacy Computing Yet?</title>
     <style>
         :root {
-            --bg: #1a1a2e;
-            --fg: #eaeaea;
-            --accent: #00d4aa;
-            --muted: #888;
-            --table-bg: #252540;
-            --border: #3a3a5a;
-            --supported: #166534;
-            --unsupported: #991b1b;
-            --partial: #854d0e;
+            --bg: #1d2021;
+            --fg: #d4be98;
+            --accent: #7daea3;
+            --muted: #665c54;
+            --table-bg: #282828;
+            --border: #3c3836;
+            --supported: #3d5a3d;
+            --unsupported: #5a3d3d;
+            --partial: #5a4d3d;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: ui-monospace, 'Cascadia Code', 'Fira Code', Menlo, monospace;
+            font-family: monospace;
             background: var(--bg);
             color: var(--fg);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2rem;
+            padding: 1rem;
+            font-size: 14px;
+            line-height: 1.4;
         }
         h1 {
-            font-size: clamp(1.5rem, 5vw, 3rem);
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
             text-align: center;
         }
         h2 {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
             color: var(--accent);
         }
         .answer {
-            font-size: clamp(2rem, 8vw, 5rem);
+            font-size: 2rem;
             color: var(--accent);
-            margin: 2rem 0;
+            margin: 1rem 0;
         }
         .subtitle {
             color: var(--muted);
             max-width: 600px;
-            line-height: 1.6;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
         .blocks {
-            font-size: 2rem;
-            margin: 2rem 0;
-            letter-spacing: 0.5rem;
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            letter-spacing: 0.25rem;
         }
         a {
             color: var(--accent);
         }
         footer {
-            margin-top: 3rem;
+            margin-top: 2rem;
             color: var(--muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+        }
+
+        /* Overview section */
+        .overview-section {
+            margin: 1rem 0;
+            width: 100%;
+            max-width: 900px;
+        }
+        .overview-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--table-bg);
+            border: 1px solid var(--border);
+        }
+        .overview-table th,
+        .overview-table td {
+            padding: 0.4rem 0.6rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        .overview-table th {
+            background: var(--table-bg);
+            font-weight: normal;
+            color: var(--accent);
+        }
+        .overview-table .unicode-range {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+        .overview-table .emulator-name {
+            width: 100px;
+        }
+        .progress-cell {
+            padding: 0.3rem 0.6rem;
+        }
+        .progress-bar {
+            display: flex;
+            height: 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar.empty {
+            background: var(--bg);
+        }
+        .progress-segment {
+            height: 100%;
+            position: relative;
+        }
+        .progress-segment .progress-fill {
+            height: 100%;
+        }
+        .progress-segment.important .progress-fill {
+            background: var(--supported);
+        }
+        .progress-segment.non-important .progress-fill {
+            background: var(--partial);
+        }
+        .progress-marker {
+            width: 1px;
+            height: 100%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            margin-top: 2px;
+            color: var(--muted);
+        }
+        .progress-labels .label-important {
+            color: var(--accent);
         }
 
         /* Section header with inline toggle */
@@ -68,7 +145,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
@@ -80,29 +157,26 @@
         .filter-toggle {
             display: flex;
             gap: 0;
-            border-radius: 6px;
-            overflow: hidden;
             border: 1px solid var(--border);
         }
         .filter-toggle button {
-            background: var(--table-bg);
-            color: var(--fg);
+            background: var(--bg);
+            color: var(--muted);
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.5rem;
             cursor: pointer;
             font-family: inherit;
-            font-size: 0.8rem;
-            transition: background 0.2s, color 0.2s;
+            font-size: 0.75rem;
         }
         .filter-toggle button:not(:last-child) {
             border-right: 1px solid var(--border);
         }
         .filter-toggle button:hover {
-            background: var(--border);
+            color: var(--fg);
         }
         .filter-toggle button.active {
-            background: var(--accent);
-            color: var(--bg);
+            background: var(--table-bg);
+            color: var(--accent);
         }
 
         /* Table visibility based on filter (per-section) */
@@ -113,46 +187,51 @@
             display: none;
         }
 
+        /* Table scroll container */
+        .table-scroll {
+            overflow-x: auto;
+        }
+
         /* Table styles */
         .table-section {
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             width: 100%;
             max-width: 900px;
         }
         .table-section h2 {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--accent);
         }
         table {
             width: 100%;
             border-collapse: collapse;
             background: var(--table-bg);
-            border-radius: 8px;
-            overflow: hidden;
+            border: 1px solid var(--border);
         }
         th, td {
-            padding: 0.75rem 1rem;
+            padding: 0.4rem 0.6rem;
             text-align: left;
-            border-bottom: 1px solid var(--border);
+            border: 1px solid var(--border);
         }
         th {
-            background: rgba(0, 212, 170, 0.1);
-            font-weight: 600;
+            background: var(--table-bg);
+            font-weight: normal;
+            color: var(--accent);
         }
         td.full {
-            color: #4ade80;
+            color: #a9b665;
         }
         td.partial {
-            color: #fbbf24;
+            color: #d8a657;
         }
         td.none {
-            color: #f87171;
+            color: #ea6962;
         }
         td.unknown {
             color: var(--muted);
         }
         .totals-row {
-            background: rgba(0, 212, 170, 0.05);
+            background: var(--bg);
         }
         .totals-row td {
             border-bottom: none;
@@ -160,68 +239,64 @@
 
         /* Character grid styles */
         .char-grid-section {
-            margin: 3rem 0;
+            margin: 2rem 0;
             width: 100%;
             max-width: 900px;
         }
         .toggle-group {
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
         }
         .emulator-toggle {
             display: flex;
             gap: 0;
-            border-radius: 6px;
-            overflow: hidden;
             border: 1px solid var(--border);
             width: fit-content;
         }
         .emulator-toggle button {
-            background: var(--table-bg);
-            color: var(--fg);
+            background: var(--bg);
+            color: var(--muted);
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.5rem;
             cursor: pointer;
             font-family: inherit;
-            font-size: 0.85rem;
-            transition: background 0.2s, color 0.2s;
+            font-size: 0.75rem;
         }
         .emulator-toggle button:not(:last-child) {
             border-right: 1px solid var(--border);
         }
         .emulator-toggle button:hover {
-            background: var(--border);
+            color: var(--fg);
         }
         .emulator-toggle button.active {
-            background: var(--accent);
-            color: var(--bg);
+            background: var(--table-bg);
+            color: var(--accent);
         }
         .grid-container {
             overflow-x: auto;
         }
         .grid-col-headers {
             display: grid;
-            grid-template-columns: 50px repeat(16, 48px);
-            gap: 2px;
-            margin-bottom: 2px;
+            grid-template-columns: 40px repeat(16, 44px);
+            gap: 1px;
+            margin-bottom: 1px;
         }
         .grid-col-header {
             text-align: center;
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.7rem;
             color: var(--muted);
-            padding: 4px 0;
+            padding: 2px 0;
         }
         .char-grid {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 1px;
         }
         .grid-row {
             display: grid;
-            grid-template-columns: 50px repeat(16, 48px);
-            gap: 2px;
+            grid-template-columns: 40px repeat(16, 44px);
+            gap: 1px;
         }
         /* Hide entire unimportant rows when filtering */
         .char-grid-section.show-important .grid-row.row-unimportant {
@@ -231,20 +306,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.7rem;
-            font-weight: 600;
+            font-size: 0.65rem;
             color: var(--muted);
             background: var(--table-bg);
-            border-radius: 4px;
         }
         .grid-cell {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 4px;
-            border-radius: 4px;
-            min-height: 56px;
+            padding: 2px;
+            min-height: 48px;
             position: relative;
         }
         .grid-cell.supported {
@@ -261,36 +333,36 @@
         }
         /* Reduce background opacity for unimportant cells when filtering */
         .char-grid-section.show-important .grid-cell.unimportant.supported {
-            background: rgba(22, 101, 52, 0.15);
+            background: rgba(61, 90, 61, 0.25);
         }
         .char-grid-section.show-important .grid-cell.unimportant.unsupported {
-            background: rgba(153, 27, 27, 0.15);
+            background: rgba(90, 61, 61, 0.25);
         }
         .char-grid-section.show-important .grid-cell.unimportant.partial {
-            background: rgba(133, 77, 14, 0.15);
+            background: rgba(90, 77, 61, 0.25);
         }
         .char-grid-section.show-important .grid-cell.unimportant.unknown {
-            background: rgba(37, 37, 64, 0.15);
+            background: rgba(40, 40, 40, 0.25);
         }
         .grid-cell .glyph {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .grid-cell .glyph svg {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             fill: var(--fg);
         }
         .grid-cell .glyph.empty {
             opacity: 0.3;
         }
         .grid-cell .code {
-            font-size: 0.6rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 2px;
+            font-size: 0.55rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 1px;
         }
     </style>
 </head>
@@ -304,6 +376,166 @@
     </p>
 
     
+    <div class="overview-section">
+        <h2>Overview</h2>
+        <div class="table-scroll">
+            <table class="overview-table">
+                <thead>
+                    <tr>
+                        <th>Emulator</th>
+                        <th>Legacy Computing<br><span class="unicode-range">U+1FB00-U+1FBFF</span></th>
+                        <th>Legacy Computing Supplement<br><span class="unicode-range">U+1CC00-U+1CEBF</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="emulator-name">ghostty</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 82.5%">
+                <div class="progress-fill" style="width: 100.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 17.5%">
+                <div class="progress-fill" style="width: 13.6%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">100%</span>
+            <span class="label-all">85%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 48.1%">
+                <div class="progress-fill" style="width: 99.4%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 51.9%">
+                <div class="progress-fill" style="width: 10.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">99%</span>
+            <span class="label-all">53%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">kitty</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 82.5%">
+                <div class="progress-fill" style="width: 84.5%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 17.5%">
+                <div class="progress-fill" style="width: 25.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">85%</span>
+            <span class="label-all">74%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 48.1%">
+                <div class="progress-fill" style="width: 68.9%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 51.9%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">69%</span>
+            <span class="label-all">33%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">urxvt</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 82.5%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 17.5%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">0%</span>
+            <span class="label-all">0%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 48.1%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 51.9%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">0%</span>
+            <span class="label-all">0%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">vte</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 82.5%">
+                <div class="progress-fill" style="width: 93.2%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 17.5%">
+                <div class="progress-fill" style="width: 52.3%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">93%</span>
+            <span class="label-all">86%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 48.1%">
+                <div class="progress-fill" style="width: 76.6%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 51.9%">
+                <div class="progress-fill" style="width: 9.4%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">77%</span>
+            <span class="label-all">42%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">xtermjs</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 82.5%">
+                <div class="progress-fill" style="width: 99.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 17.5%">
+                <div class="progress-fill" style="width: 56.8%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">99%</span>
+            <span class="label-all">92%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 48.1%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 51.9%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">0%</span>
+            <span class="label-all">0%</span>
+        </div>
+    </td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+
+    
     <div class="table-section show-important" data-section="main">
         <div class="section-header">
             <h2>Symbols for Legacy Computing (U+1FB00-U+1FBFF)</h2>
@@ -312,7 +544,8 @@
                 <button class="filter-btn" data-filter="all">All</button>
             </div>
         </div>
-        
+        <div class="table-scroll">
+            
         <table id="main-all" class="table-all">
             <thead>
                 <tr>
@@ -326,7 +559,7 @@
             </tbody>
         </table>
     
-        
+            
         <table id="main-important" class="table-important">
             <thead>
                 <tr>
@@ -340,6 +573,7 @@
             </tbody>
         </table>
     
+        </div>
     </div>
     
     <div class="table-section show-important" data-section="supplement">
@@ -350,12 +584,13 @@
                 <button class="filter-btn" data-filter="all">All</button>
             </div>
         </div>
-        
+        <div class="table-scroll">
+            
         <table id="supplement-all" class="table-all">
             <thead>
                 <tr>
                     <th>Section</th>
-                    <th>ghostty</th><th>kitty</th><th>uxterm</th><th>vte</th><th>xtermjs</th>
+                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
                 </tr>
             </thead>
             <tbody>
@@ -364,12 +599,12 @@
             </tbody>
         </table>
     
-        
+            
         <table id="supplement-important" class="table-important">
             <thead>
                 <tr>
                     <th>Section</th>
-                    <th>ghostty</th><th>kitty</th><th>uxterm</th><th>vte</th><th>xtermjs</th>
+                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
                 </tr>
             </thead>
             <tbody>
@@ -378,6 +613,7 @@
             </tbody>
         </table>
     
+        </div>
     </div>
     
 
@@ -5390,7 +5626,7 @@
                     <button class="filter-btn" data-filter="all">All</button>
                 </div>
                 <div class="emulator-toggle">
-                    <button class="emulator-btn active" data-emulator="ghostty">ghostty</button><button class="emulator-btn" data-emulator="kitty">kitty</button><button class="emulator-btn" data-emulator="uxterm">uxterm</button><button class="emulator-btn" data-emulator="vte">vte</button><button class="emulator-btn" data-emulator="xtermjs">xtermjs</button>
+                    <button class="emulator-btn active" data-emulator="ghostty">ghostty</button><button class="emulator-btn" data-emulator="kitty">kitty</button><button class="emulator-btn" data-emulator="urxvt">urxvt</button><button class="emulator-btn" data-emulator="vte">vte</button><button class="emulator-btn" data-emulator="xtermjs">xtermjs</button>
                 </div>
             </div>
         </div>
@@ -10956,7 +11192,7 @@
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M636 336Q680 283 680 200Q680 74 558 -48Q509 -97 458 -127Q402 -160 360.0 -160.0Q318 -160 262 -127Q207 -95 156.5 -43.0Q106 9 77 64Q40 132 40 200Q40 283 84 336Q137 400 240 400Q286 400 322 387Q336 500 458 593L502 527Q493 521 477.5 508.0Q462 495 436.0 459.5Q410 424 403 388Q439 400 480 400Q583 400 636 336ZM502 8Q600 106 600 200Q600 320 480 320Q454 320 431.5 313.0Q409 306 400.5 301.0Q392 296 388 292L359 261L332 292Q295 320 240 320Q176 320 146 284Q120 252 120 200Q120 106 218 8Q259 -33 300.0 -56.5Q341 -80 360.0 -80.0Q379 -80 420.0 -56.5Q461 -33 502 8ZM332.0 -48.0Q320 -36 320.0 -20.0Q320 -4 332.0 8.0Q344 20 360.0 20.0Q376 20 388.0 8.0Q400 -4 400.0 -20.0Q400 -36 388.0 -48.0Q376 -60 360.0 -60.0Q344 -60 332.0 -48.0ZM412.0 12.0Q400 24 400.0 40.0Q400 56 412.0 68.0Q424 80 440.0 80.0Q456 80 468.0 68.0Q480 56 480.0 40.0Q480 24 468.0 12.0Q456 0 440.0 0.0Q424 0 412.0 12.0ZM252.0 12.0Q240 24 240.0 40.0Q240 56 252.0 68.0Q264 80 280.0 80.0Q296 80 308.0 68.0Q320 56 320.0 40.0Q320 24 308.0 12.0Q296 0 280.0 0.0Q264 0 252.0 12.0ZM332.0 72.0Q320 84 320.0 100.0Q320 116 332.0 128.0Q344 140 360.0 140.0Q376 140 388.0 128.0Q400 116 400.0 100.0Q400 84 388.0 72.0Q376 60 360.0 60.0Q344 60 332.0 72.0ZM492.0 72.0Q480 84 480.0 100.0Q480 116 492.0 128.0Q504 140 520.0 140.0Q536 140 548.0 128.0Q560 116 560.0 100.0Q560 84 548.0 72.0Q536 60 520.0 60.0Q504 60 492.0 72.0ZM172.0 72.0Q160 84 160.0 100.0Q160 116 172.0 128.0Q184 140 200.0 140.0Q216 140 228.0 128.0Q240 116 240.0 100.0Q240 84 228.0 72.0Q216 60 200.0 60.0Q184 60 172.0 72.0ZM412.0 132.0Q400 144 400.0 160.0Q400 176 412.0 188.0Q424 200 440.0 200.0Q456 200 468.0 188.0Q480 176 480.0 160.0Q480 144 468.0 132.0Q456 120 440.0 120.0Q424 120 412.0 132.0ZM252.0 132.0Q240 144 240.0 160.0Q240 176 252.0 188.0Q264 200 280.0 200.0Q296 200 308.0 188.0Q320 176 320.0 160.0Q320 144 308.0 132.0Q296 120 280.0 120.0Q264 120 252.0 132.0ZM152.0 172.0Q140 184 140.0 200.0Q140 216 152.0 228.0Q164 240 180.0 240.0Q196 240 208.0 228.0Q220 216 220.0 200.0Q220 184 208.0 172.0Q196 160 180.0 160.0Q164 160 152.0 172.0ZM512.0 172.0Q500 184 500.0 200.0Q500 216 512.0 228.0Q524 240 540.0 240.0Q556 240 568.0 228.0Q580 216 580.0 200.0Q580 184 568.0 172.0Q556 160 540.0 160.0Q524 160 512.0 172.0ZM232.0 232.0Q220 244 220.0 260.0Q220 276 232.0 288.0Q244 300 260.0 300.0Q276 300 288.0 288.0Q300 276 300.0 260.0Q300 244 288.0 232.0Q276 220 260.0 220.0Q244 220 232.0 232.0ZM432.0 232.0Q420 244 420.0 260.0Q420 276 432.0 288.0Q444 300 460.0 300.0Q476 300 488.0 288.0Q500 276 500.0 260.0Q500 244 488.0 232.0Q476 220 460.0 220.0Q444 220 432.0 232.0ZM332.0 192.0Q320 204 320.0 220.0Q320 236 332.0 248.0Q344 260 360.0 260.0Q376 260 388.0 248.0Q400 236 400.0 220.0Q400 204 388.0 192.0Q376 180 360.0 180.0Q344 180 332.0 192.0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEBF</div></div></div></div></div><div class="grid-wrapper" data-emulator="uxterm" style="display: none;"><div class="char-grid grid-uxterm"><div class="grid-row row-unimportant"><div class="grid-row-header">1CC0</div><div class="grid-cell unsupported unimportant" title="U+1CC00"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEBF</div></div></div></div></div><div class="grid-wrapper" data-emulator="urxvt" style="display: none;"><div class="char-grid grid-urxvt"><div class="grid-row row-unimportant"><div class="grid-row-header">1CC0</div><div class="grid-cell unsupported unimportant" title="U+1CC00"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M560 80H640V-160H560V-80H160V-160H80V80H160V0H320V400H240V320H160V560H240V480H480V560H560V320H480V400H400V0H560Z" fill="currentColor"/>
   </g>

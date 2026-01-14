@@ -26,6 +26,15 @@ class CompatibilityRow:
     important: bool
 
 
+@dataclass
+class BlockStats:
+    """Statistics for a Unicode block."""
+    total_codepoints: int
+    important_codepoints: int
+    supported_important: int
+    supported_all: int
+
+
 def parse_ranges(ranges_str: str) -> set[int]:
     """Parse a space-separated list of Unicode ranges into a set of codepoints.
 
@@ -122,6 +131,136 @@ def calculate_totals(rows: list[CompatibilityRow], terminals: list[str]) -> dict
     return totals
 
 
+def compute_block_stats(
+    sections: list[SectionDef],
+    emulator_data: dict[str, dict[str, str]],
+) -> dict[str, BlockStats]:
+    """Compute block statistics for each emulator.
+
+    Returns dict mapping emulator name -> BlockStats
+    """
+    # Compute important and all codepoints from sections
+    all_codepoints: set[int] = set()
+    important_codepoints: set[int] = set()
+    for section in sections:
+        all_codepoints.update(section.codepoints)
+        if section.important:
+            important_codepoints.update(section.codepoints)
+
+    stats = {}
+    for emulator, char_support in emulator_data.items():
+        supported_important = 0
+        supported_all = 0
+
+        for cp in all_codepoints:
+            hex_code = f"U+{cp:05X}" if cp >= 0x10000 else f"U+{cp:04X}"
+            status = char_support.get(hex_code, "no")
+
+            if status == "yes":
+                supported_all += 1
+                if cp in important_codepoints:
+                    supported_important += 1
+            elif status == "maybe":
+                supported_all += 0.5
+                if cp in important_codepoints:
+                    supported_important += 0.5
+
+        stats[emulator] = BlockStats(
+            total_codepoints=len(all_codepoints),
+            important_codepoints=len(important_codepoints),
+            supported_important=int(supported_important),
+            supported_all=int(supported_all),
+        )
+
+    return stats
+
+
+def render_overview(
+    emulators: list[str],
+    main_stats: dict[str, BlockStats] | None,
+    supplement_stats: dict[str, BlockStats] | None,
+) -> str:
+    """Render the overview visualization with progress bars."""
+    if not emulators:
+        return ""
+
+    rows_html = []
+    for emulator in emulators:
+        cells = [f'<td class="emulator-name">{emulator}</td>']
+
+        # Main block progress bar
+        if main_stats and emulator in main_stats:
+            stats = main_stats[emulator]
+            cells.append(_render_progress_cell(stats))
+        else:
+            cells.append('<td class="progress-cell"><div class="progress-bar empty"></div></td>')
+
+        # Supplement block progress bar
+        if supplement_stats and emulator in supplement_stats:
+            stats = supplement_stats[emulator]
+            cells.append(_render_progress_cell(stats))
+        else:
+            cells.append('<td class="progress-cell"><div class="progress-bar empty"></div></td>')
+
+        rows_html.append(f'<tr>{"".join(cells)}</tr>')
+
+    return f"""
+    <div class="overview-section">
+        <h2>Overview</h2>
+        <div class="table-scroll">
+            <table class="overview-table">
+                <thead>
+                    <tr>
+                        <th>Emulator</th>
+                        <th>Legacy Computing<br><span class="unicode-range">U+1FB00-U+1FBFF</span></th>
+                        <th>Legacy Computing Supplement<br><span class="unicode-range">U+1CC00-U+1CEBF</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {''.join(rows_html)}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    """
+
+
+def _render_progress_cell(stats: BlockStats) -> str:
+    """Render a single progress bar cell."""
+    total = stats.total_codepoints
+    important = stats.important_codepoints
+    non_important = total - important
+
+    # Calculate widths as percentages
+    important_width = (important / total * 100) if total > 0 else 0
+    non_important_width = 100 - important_width
+
+    # Calculate fill percentages within each segment
+    important_fill = (stats.supported_important / important * 100) if important > 0 else 0
+    non_important_supported = stats.supported_all - stats.supported_important
+    non_important_fill = (non_important_supported / non_important * 100) if non_important > 0 else 0
+
+    # Overall percentage for label
+    overall_pct = (stats.supported_all / total * 100) if total > 0 else 0
+    important_pct = (stats.supported_important / important * 100) if important > 0 else 0
+
+    return f'''<td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: {important_width:.1f}%">
+                <div class="progress-fill" style="width: {important_fill:.1f}%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: {non_important_width:.1f}%">
+                <div class="progress-fill" style="width: {non_important_fill:.1f}%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">{important_pct:.0f}%</span>
+            <span class="label-all">{overall_pct:.0f}%</span>
+        </div>
+    </td>'''
+
+
 def render_compatibility_table(
     table_id: str,
     terminals: list[str],
@@ -208,8 +347,10 @@ def render_table_section(
                 <button class="filter-btn" data-filter="all">All</button>
             </div>
         </div>
-        {all_table}
-        {important_table}
+        <div class="table-scroll">
+            {all_table}
+            {important_table}
+        </div>
     </div>
     """
 
@@ -362,7 +503,7 @@ def render_character_grid_section(
     """
 
 
-def render_page(tables_html: str, char_grids_html: str) -> str:
+def render_page(overview_html: str, tables_html: str, char_grids_html: str) -> str:
     """Render the complete HTML page."""
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -372,61 +513,138 @@ def render_page(tables_html: str, char_grids_html: str) -> str:
     <title>Are We Legacy Computing Yet?</title>
     <style>
         :root {{
-            --bg: #1a1a2e;
-            --fg: #eaeaea;
-            --accent: #00d4aa;
-            --muted: #888;
-            --table-bg: #252540;
-            --border: #3a3a5a;
-            --supported: #166534;
-            --unsupported: #991b1b;
-            --partial: #854d0e;
+            --bg: #1d2021;
+            --fg: #d4be98;
+            --accent: #7daea3;
+            --muted: #665c54;
+            --table-bg: #282828;
+            --border: #3c3836;
+            --supported: #3d5a3d;
+            --unsupported: #5a3d3d;
+            --partial: #5a4d3d;
         }}
         * {{ box-sizing: border-box; margin: 0; padding: 0; }}
         body {{
-            font-family: ui-monospace, 'Cascadia Code', 'Fira Code', Menlo, monospace;
+            font-family: monospace;
             background: var(--bg);
             color: var(--fg);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 2rem;
+            padding: 1rem;
+            font-size: 14px;
+            line-height: 1.4;
         }}
         h1 {{
-            font-size: clamp(1.5rem, 5vw, 3rem);
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
             text-align: center;
         }}
         h2 {{
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            font-weight: normal;
+            margin-bottom: 0.5rem;
             color: var(--accent);
         }}
         .answer {{
-            font-size: clamp(2rem, 8vw, 5rem);
+            font-size: 2rem;
             color: var(--accent);
-            margin: 2rem 0;
+            margin: 1rem 0;
         }}
         .subtitle {{
             color: var(--muted);
             max-width: 600px;
-            line-height: 1.6;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }}
         .blocks {{
-            font-size: 2rem;
-            margin: 2rem 0;
-            letter-spacing: 0.5rem;
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            letter-spacing: 0.25rem;
         }}
         a {{
             color: var(--accent);
         }}
         footer {{
-            margin-top: 3rem;
+            margin-top: 2rem;
             color: var(--muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+        }}
+
+        /* Overview section */
+        .overview-section {{
+            margin: 1rem 0;
+            width: 100%;
+            max-width: 900px;
+        }}
+        .overview-table {{
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--table-bg);
+            border: 1px solid var(--border);
+        }}
+        .overview-table th,
+        .overview-table td {{
+            padding: 0.4rem 0.6rem;
+            text-align: left;
+            border: 1px solid var(--border);
+        }}
+        .overview-table th {{
+            background: var(--table-bg);
+            font-weight: normal;
+            color: var(--accent);
+        }}
+        .overview-table .unicode-range {{
+            font-size: 0.75rem;
+            color: var(--muted);
+        }}
+        .overview-table .emulator-name {{
+            width: 100px;
+        }}
+        .progress-cell {{
+            padding: 0.3rem 0.6rem;
+        }}
+        .progress-bar {{
+            display: flex;
+            height: 16px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+        }}
+        .progress-bar.empty {{
+            background: var(--bg);
+        }}
+        .progress-segment {{
+            height: 100%;
+            position: relative;
+        }}
+        .progress-segment .progress-fill {{
+            height: 100%;
+        }}
+        .progress-segment.important .progress-fill {{
+            background: var(--supported);
+        }}
+        .progress-segment.non-important .progress-fill {{
+            background: var(--partial);
+        }}
+        .progress-marker {{
+            width: 1px;
+            height: 100%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }}
+        .progress-labels {{
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            margin-top: 2px;
+            color: var(--muted);
+        }}
+        .progress-labels .label-important {{
+            color: var(--accent);
         }}
 
         /* Section header with inline toggle */
@@ -434,7 +652,7 @@ def render_page(tables_html: str, char_grids_html: str) -> str:
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             flex-wrap: wrap;
             gap: 0.5rem;
         }}
@@ -446,29 +664,26 @@ def render_page(tables_html: str, char_grids_html: str) -> str:
         .filter-toggle {{
             display: flex;
             gap: 0;
-            border-radius: 6px;
-            overflow: hidden;
             border: 1px solid var(--border);
         }}
         .filter-toggle button {{
-            background: var(--table-bg);
-            color: var(--fg);
+            background: var(--bg);
+            color: var(--muted);
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.5rem;
             cursor: pointer;
             font-family: inherit;
-            font-size: 0.8rem;
-            transition: background 0.2s, color 0.2s;
+            font-size: 0.75rem;
         }}
         .filter-toggle button:not(:last-child) {{
             border-right: 1px solid var(--border);
         }}
         .filter-toggle button:hover {{
-            background: var(--border);
+            color: var(--fg);
         }}
         .filter-toggle button.active {{
-            background: var(--accent);
-            color: var(--bg);
+            background: var(--table-bg);
+            color: var(--accent);
         }}
 
         /* Table visibility based on filter (per-section) */
@@ -479,46 +694,51 @@ def render_page(tables_html: str, char_grids_html: str) -> str:
             display: none;
         }}
 
+        /* Table scroll container */
+        .table-scroll {{
+            overflow-x: auto;
+        }}
+
         /* Table styles */
         .table-section {{
-            margin: 2rem 0;
+            margin: 1.5rem 0;
             width: 100%;
             max-width: 900px;
         }}
         .table-section h2 {{
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--accent);
         }}
         table {{
             width: 100%;
             border-collapse: collapse;
             background: var(--table-bg);
-            border-radius: 8px;
-            overflow: hidden;
+            border: 1px solid var(--border);
         }}
         th, td {{
-            padding: 0.75rem 1rem;
+            padding: 0.4rem 0.6rem;
             text-align: left;
-            border-bottom: 1px solid var(--border);
+            border: 1px solid var(--border);
         }}
         th {{
-            background: rgba(0, 212, 170, 0.1);
-            font-weight: 600;
+            background: var(--table-bg);
+            font-weight: normal;
+            color: var(--accent);
         }}
         td.full {{
-            color: #4ade80;
+            color: #a9b665;
         }}
         td.partial {{
-            color: #fbbf24;
+            color: #d8a657;
         }}
         td.none {{
-            color: #f87171;
+            color: #ea6962;
         }}
         td.unknown {{
             color: var(--muted);
         }}
         .totals-row {{
-            background: rgba(0, 212, 170, 0.05);
+            background: var(--bg);
         }}
         .totals-row td {{
             border-bottom: none;
@@ -526,68 +746,64 @@ def render_page(tables_html: str, char_grids_html: str) -> str:
 
         /* Character grid styles */
         .char-grid-section {{
-            margin: 3rem 0;
+            margin: 2rem 0;
             width: 100%;
             max-width: 900px;
         }}
         .toggle-group {{
             display: flex;
-            gap: 1rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
         }}
         .emulator-toggle {{
             display: flex;
             gap: 0;
-            border-radius: 6px;
-            overflow: hidden;
             border: 1px solid var(--border);
             width: fit-content;
         }}
         .emulator-toggle button {{
-            background: var(--table-bg);
-            color: var(--fg);
+            background: var(--bg);
+            color: var(--muted);
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.5rem;
             cursor: pointer;
             font-family: inherit;
-            font-size: 0.85rem;
-            transition: background 0.2s, color 0.2s;
+            font-size: 0.75rem;
         }}
         .emulator-toggle button:not(:last-child) {{
             border-right: 1px solid var(--border);
         }}
         .emulator-toggle button:hover {{
-            background: var(--border);
+            color: var(--fg);
         }}
         .emulator-toggle button.active {{
-            background: var(--accent);
-            color: var(--bg);
+            background: var(--table-bg);
+            color: var(--accent);
         }}
         .grid-container {{
             overflow-x: auto;
         }}
         .grid-col-headers {{
             display: grid;
-            grid-template-columns: 50px repeat(16, 48px);
-            gap: 2px;
-            margin-bottom: 2px;
+            grid-template-columns: 40px repeat(16, 44px);
+            gap: 1px;
+            margin-bottom: 1px;
         }}
         .grid-col-header {{
             text-align: center;
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.7rem;
             color: var(--muted);
-            padding: 4px 0;
+            padding: 2px 0;
         }}
         .char-grid {{
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 1px;
         }}
         .grid-row {{
             display: grid;
-            grid-template-columns: 50px repeat(16, 48px);
-            gap: 2px;
+            grid-template-columns: 40px repeat(16, 44px);
+            gap: 1px;
         }}
         /* Hide entire unimportant rows when filtering */
         .char-grid-section.show-important .grid-row.row-unimportant {{
@@ -597,20 +813,17 @@ def render_page(tables_html: str, char_grids_html: str) -> str:
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.7rem;
-            font-weight: 600;
+            font-size: 0.65rem;
             color: var(--muted);
             background: var(--table-bg);
-            border-radius: 4px;
         }}
         .grid-cell {{
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 4px;
-            border-radius: 4px;
-            min-height: 56px;
+            padding: 2px;
+            min-height: 48px;
             position: relative;
         }}
         .grid-cell.supported {{
@@ -627,36 +840,36 @@ def render_page(tables_html: str, char_grids_html: str) -> str:
         }}
         /* Reduce background opacity for unimportant cells when filtering */
         .char-grid-section.show-important .grid-cell.unimportant.supported {{
-            background: rgba(22, 101, 52, 0.15);
+            background: rgba(61, 90, 61, 0.25);
         }}
         .char-grid-section.show-important .grid-cell.unimportant.unsupported {{
-            background: rgba(153, 27, 27, 0.15);
+            background: rgba(90, 61, 61, 0.25);
         }}
         .char-grid-section.show-important .grid-cell.unimportant.partial {{
-            background: rgba(133, 77, 14, 0.15);
+            background: rgba(90, 77, 61, 0.25);
         }}
         .char-grid-section.show-important .grid-cell.unimportant.unknown {{
-            background: rgba(37, 37, 64, 0.15);
+            background: rgba(40, 40, 40, 0.25);
         }}
         .grid-cell .glyph {{
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
         }}
         .grid-cell .glyph svg {{
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             fill: var(--fg);
         }}
         .grid-cell .glyph.empty {{
             opacity: 0.3;
         }}
         .grid-cell .code {{
-            font-size: 0.6rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 2px;
+            font-size: 0.55rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 1px;
         }}
     </style>
 </head>
@@ -668,6 +881,8 @@ def render_page(tables_html: str, char_grids_html: str) -> str:
         Tracking support for Unicode's "Symbols for Legacy Computing" (U+1FB00-U+1FBFF)
         and its supplement block (U+1CC00-U+1CEBF) in modern terminal emulators and fonts.
     </p>
+
+    {overview_html}
 
     {tables_html}
 
@@ -730,6 +945,9 @@ def main():
 
     tables_html = ""
     char_grids_html = ""
+    all_emulators: set[str] = set()
+    main_stats: dict[str, BlockStats] | None = None
+    supplement_stats: dict[str, BlockStats] | None = None
 
     # Main block (U+1FB00-U+1FBFF)
     main_compat_dir = csv_dir / "legacy_computing_compatibility"
@@ -744,8 +962,12 @@ def main():
         for csv_file in sorted(main_compat_dir.glob("*.csv")):
             emulator_name = csv_file.stem
             emulator_data[emulator_name] = load_emulator_compatibility(csv_file)
+            all_emulators.add(emulator_name)
 
         if emulator_data:
+            # Compute block stats for overview
+            main_stats = compute_block_stats(sections, emulator_data)
+
             # Generate section-based compatibility table
             terminals, rows = compute_section_compatibility(sections, emulator_data)
             tables_html += render_table_section(
@@ -779,8 +1001,12 @@ def main():
         for csv_file in sorted(supplement_compat_dir.glob("*.csv")):
             emulator_name = csv_file.stem
             emulator_data[emulator_name] = load_emulator_compatibility(csv_file)
+            all_emulators.add(emulator_name)
 
         if emulator_data:
+            # Compute block stats for overview
+            supplement_stats = compute_block_stats(sections, emulator_data)
+
             # Generate section-based compatibility table
             terminals, rows = compute_section_compatibility(sections, emulator_data)
             tables_html += render_table_section(
@@ -801,8 +1027,15 @@ def main():
                 num_rows=44,
             )
 
+    # Generate overview
+    overview_html = render_overview(
+        sorted(all_emulators),
+        main_stats,
+        supplement_stats,
+    )
+
     # Generate the page
-    html = render_page(tables_html, char_grids_html)
+    html = render_page(overview_html, tables_html, char_grids_html)
     output_file.write_text(html)
     print(f"Generated {output_file}")
 
