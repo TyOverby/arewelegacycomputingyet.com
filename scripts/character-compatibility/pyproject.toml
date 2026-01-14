@@ -1,0 +1,13 @@
+[project]
+name = "character-compatibility"
+version = "0.1.0"
+description = "Interactive character-by-character compatibility checker for terminal emulators"
+requires-python = ">=3.11"
+dependencies = ["readchar"]
+
+[project.scripts]
+character-compatibility = "character_compatibility:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
