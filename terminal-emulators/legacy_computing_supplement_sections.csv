@@ -1,0 +1,21 @@
+section,ranges
+Game sprites,1CC00-1CC04 1CC48-1CC6A 1CC70-1CC85 1CC92-1CCA5 1CDE6-1CDFF
+Rule segments,1CC05-1CC07
+Schematic symbols,1CC08-1CC1A
+*Box drawing,1CC1B-1CC20 1CE16-1CE19
+*Separated mosaic,1CC21-1CC2F 1CE51-1CE8F
+*Circle segments,1CC30-1CC3F
+Fill,1CC40-1CC47
+Emoticon,1CC6F
+Terminal graphic,1CC6B-1CC6E 1CC86-1CC8F 1CCFA-1CCFC 1CE00-1CE0C 1CEBA-1CEBF
+Lines with tick marks,1CC90-1CC91 1CE0F-1CE15
+Faces,1CCA6-1CCB1
+Icons,1CCB2-1CCB9 1CCD2-1CCD5
+Chess symbols,1CCBA-1CCD1
+Outlined uppercase Latin alphabet,1CCD6-1CCEF
+Outlined digits,1CCF0-1CCF9
+*Block mosaic,1CD00-1CDE5
+Dashed lines,1CE0D-1CE0E
+Large type pieces,1CE1A-1CE50
+Block elements,1CE90-1CEAF
+Smalltalk symbols,1CEB0-1CEB3

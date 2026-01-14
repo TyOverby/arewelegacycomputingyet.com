@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy Computing Compatibility Viewer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #eee;
+        }
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .controls label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, textarea {
+            font-family: monospace;
+            font-size: 14px;
+            padding: 8px;
+            background: #2a2a2a;
+            color: #eee;
+            border: 1px solid #444;
+        }
+        textarea {
+            width: 400px;
+            height: 150px;
+            user-select: text;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+        table {
+            border-collapse: collapse;
+            background: #2a2a2a;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 4px;
+            text-align: center;
+            min-width: 40px;
+            height: 40px;
+        }
+        th {
+            background: #333;
+            font-weight: bold;
+        }
+        td.cell {
+            cursor: pointer;
+            position: relative;
+        }
+        td.cell:hover {
+            outline: 2px solid #fff;
+            outline-offset: -2px;
+        }
+        td.cell img {
+            width: 28px;
+            height: 28px;
+            display: block;
+            margin: auto;
+            filter: invert(1);
+        }
+        td.cell.yes {
+            background: #2d5a2d;
+        }
+        td.cell.no {
+            background: #5a2d2d;
+        }
+        td.cell.maybe {
+            background: #5a4a2d;
+        }
+        td.cell.empty {
+            background: transparent;
+        }
+        td.cell.no-char {
+            background: #1a1a1a;
+            cursor: default;
+        }
+        .row-label {
+            background: #333;
+            font-weight: bold;
+        }
+        .legend {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #444;
+        }
+        .legend-color.yes { background: #2d5a2d; }
+        .legend-color.no { background: #5a2d2d; }
+        .legend-color.maybe { background: #5a4a2d; }
+        .legend-color.empty { background: transparent; }
+        h1 {
+            margin-top: 0;
+        }
+        .info {
+            color: #888;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Legacy Computing Compatibility Viewer</h1>
+
+    <div class="controls">
+        <div>
+            <label for="block-select">Unicode Block:</label>
+            <select id="block-select">
+                <option value="legacy_computing">Symbols for Legacy Computing (U+1FB00-U+1FBFF)</option>
+                <option value="legacy_computing_supplement">Symbols for Legacy Computing Supplement (U+1CC00-U+1CEBF)</option>
+            </select>
+        </div>
+        <div>
+            <label for="csv-input">CSV Data:</label>
+            <textarea id="csv-input" placeholder="codepoint,supported&#10;U+1FB00,yes&#10;U+1FB01,no&#10;..."></textarea>
+        </div>
+    </div>
+
+    <p class="info">Click cells to cycle: empty → yes → no → maybe → empty</p>
+
+    <div class="table-container">
+        <table id="char-table"></table>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item"><div class="legend-color yes"></div> yes (supported)</div>
+        <div class="legend-item"><div class="legend-color no"></div> no (not supported)</div>
+        <div class="legend-item"><div class="legend-color maybe"></div> maybe</div>
+        <div class="legend-item"><div class="legend-color empty"></div> empty (not set)</div>
+    </div>
+
+    <script>
+        const BLOCKS = {
+            legacy_computing: {
+                rangeStart: 0x1FB00,
+                rangeEnd: 0x1FBFF,
+                svgPath: '../../svgs/legacy_computing'
+            },
+            legacy_computing_supplement: {
+                rangeStart: 0x1CC00,
+                rangeEnd: 0x1CEBF,
+                svgPath: '../../svgs/legacy_computing_supplement'
+            }
+        };
+
+        const STATES = ['empty', 'yes', 'no', 'maybe'];
+        const STATE_TO_CSV = { yes: 'yes', no: 'no', maybe: 'maybe' };
+        const CSV_TO_STATE = { yes: 'yes', no: 'no', maybe: 'maybe' };
+
+        let currentBlock = 'legacy_computing';
+        let cellStates = {}; // codepoint (number) -> state string
+        let lastClick = null; // { cp: number, state: string }
+
+        const blockSelect = document.getElementById('block-select');
+        const csvInput = document.getElementById('csv-input');
+        const charTable = document.getElementById('char-table');
+
+        function parseCSV(csv) {
+            const states = {};
+            const lines = csv.trim().split('\n');
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line || line.startsWith('codepoint')) continue; // skip header
+                const [codepoint, supported] = line.split(',').map(s => s.trim());
+                if (!codepoint) continue;
+                const cp = parseInt(codepoint.replace('U+', ''), 16);
+                if (!isNaN(cp) && CSV_TO_STATE[supported]) {
+                    states[cp] = CSV_TO_STATE[supported];
+                }
+            }
+            return states;
+        }
+
+        function generateCSV() {
+            const block = BLOCKS[currentBlock];
+            const lines = ['codepoint,supported'];
+            const sortedCPs = Object.keys(cellStates)
+                .map(Number)
+                .filter(cp => cp >= block.rangeStart && cp <= block.rangeEnd)
+                .sort((a, b) => a - b);
+
+            for (const cp of sortedCPs) {
+                const state = cellStates[cp];
+                if (STATE_TO_CSV[state]) {
+                    lines.push(`U+${cp.toString(16).toUpperCase()},${STATE_TO_CSV[state]}`);
+                }
+            }
+            return lines.join('\n');
+        }
+
+        function buildTable() {
+            const block = BLOCKS[currentBlock];
+            const start = block.rangeStart;
+            const end = block.rangeEnd;
+
+            // Calculate row range (each row is 16 chars)
+            const startRow = Math.floor(start / 16);
+            const endRow = Math.floor(end / 16);
+
+            let html = '<tr><th></th>';
+            for (let i = 0; i < 16; i++) {
+                html += `<th>${i.toString(16).toUpperCase()}</th>`;
+            }
+            html += '</tr>';
+
+            for (let row = startRow; row <= endRow; row++) {
+                const rowLabel = row.toString(16).toUpperCase();
+                html += `<tr><td class="row-label">${rowLabel}</td>`;
+
+                for (let col = 0; col < 16; col++) {
+                    const cp = row * 16 + col;
+                    if (cp < start || cp > end) {
+                        html += '<td class="cell no-char"></td>';
+                    } else {
+                        const state = cellStates[cp] || 'empty';
+                        const hex = cp.toString(16).toUpperCase();
+                        const svgUrl = `${block.svgPath}/U+${hex}.svg`;
+                        html += `<td class="cell ${state}" data-cp="${cp}">`;
+                        html += `<img src="${svgUrl}" alt="U+${hex}" onerror="this.style.display='none'">`;
+                        html += '</td>';
+                    }
+                }
+                html += '</tr>';
+            }
+
+            charTable.innerHTML = html;
+
+            // Add click handlers
+            charTable.querySelectorAll('td.cell:not(.no-char)').forEach(td => {
+                td.addEventListener('click', handleCellClick);
+            });
+        }
+
+        function setCellState(cp, state) {
+            if (state === 'empty') {
+                delete cellStates[cp];
+            } else {
+                cellStates[cp] = state;
+            }
+            // Update cell class in DOM
+            const td = charTable.querySelector(`td[data-cp="${cp}"]`);
+            if (td) {
+                td.className = `cell ${state}`;
+            }
+        }
+
+        function handleCellClick(e) {
+            const td = e.currentTarget;
+            const cp = parseInt(td.dataset.cp, 10);
+            const block = BLOCKS[currentBlock];
+
+            // Shift-click: fill range from last click
+            if (e.shiftKey && lastClick !== null) {
+                const startCP = Math.max(Math.min(lastClick.cp, cp), block.rangeStart);
+                const endCP = Math.min(Math.max(lastClick.cp, cp), block.rangeEnd);
+
+                for (let i = startCP; i <= endCP; i++) {
+                    if (i >= block.rangeStart && i <= block.rangeEnd) {
+                        setCellState(i, lastClick.state);
+                    }
+                }
+
+                csvInput.value = generateCSV();
+                return;
+            }
+
+            // Normal click: cycle state
+            const currentState = cellStates[cp] || 'empty';
+            const currentIndex = STATES.indexOf(currentState);
+            const nextIndex = (currentIndex + 1) % STATES.length;
+            const nextState = STATES[nextIndex];
+
+            setCellState(cp, nextState);
+
+            // Remember this click for shift-click range fill
+            lastClick = { cp, state: nextState };
+
+            // Update CSV
+            csvInput.value = generateCSV();
+        }
+
+        function handleBlockChange() {
+            currentBlock = blockSelect.value;
+            cellStates = parseCSV(csvInput.value);
+            buildTable();
+        }
+
+        function handleCSVInput() {
+            cellStates = parseCSV(csvInput.value);
+            buildTable();
+        }
+
+        // Initialize
+        blockSelect.addEventListener('change', handleBlockChange);
+        csvInput.addEventListener('input', handleCSVInput);
+
+        buildTable();
+    </script>
+</body>
+</html>

@@ -229,9 +229,9 @@ U+1FBE2,no
 U+1FBE3,no
 U+1FBE4,no
 U+1FBE5,no
-U+1FBE6,no
+U+1FBE6,yes
 U+1FBE7,yes
-U+1FBE8,yes
+U+1FBE8,no
 U+1FBE9,no
 U+1FBEA,no
 U+1FBEB,no
@@ -249,9 +249,3 @@ U+1FBF6,maybe
 U+1FBF7,maybe
 U+1FBF8,maybe
 U+1FBF9,maybe
-U+1FBFA,no
-U+1FBFB,no
-U+1FBFC,no
-U+1FBFD,no
-U+1FBFE,no
-U+1FBFF,no

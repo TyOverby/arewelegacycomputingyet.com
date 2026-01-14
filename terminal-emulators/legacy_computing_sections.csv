@@ -1,0 +1,16 @@
+section,ranges
+*Block mosaic,1FB00-1FB3B
+*Smooth mosaic,1FB3C-1FB67 1FB9A-1FB9B
+*Block elements,1FB68-1FB6F 1FB70-1FB80 1FB82-1FB8B 1FBCE-1FBCF
+Window title bar,1FB81
+*Rectangular shade,1FB8C-1FB94
+*Fill,1FB95-1FB97
+*Diagonal fill,1FB98-1FB99
+Triangular shade,1FB9C-1FB9F
+*Character cell diagonals,1FBA0-1FBAE 1FBD0-1FBDF
+Light solid line with stroke,1FBAF
+Terminal graphic,1FBB0-1FBB3 1FBB9-1FBBC 1FBC0-1FBCD 1FBFA
+Arrows,1FBB4-1FBB8
+*Negative terminal graphic,1FBBD-1FBBF
+*Geometric shapes,1FBE0-1FBEF
+Segmented digits,1FBF0-1FBF9
