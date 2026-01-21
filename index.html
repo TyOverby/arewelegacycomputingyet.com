@@ -5,365 +5,366 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Are We Legacy Computing Yet?</title>
     <style>
-        :root {
-            --bg: #1d2021;
-            --fg: #d4be98;
-            --accent: #7daea3;
-            --muted: #665c54;
-            --table-bg: #282828;
-            --border: #3c3836;
-            --supported: #3d5a3d;
-            --unsupported: #5a3d3d;
-            --partial: #5a4d3d;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: monospace;
-            background: var(--bg);
-            color: var(--fg);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-        h1 {
-            font-size: 1.5rem;
-            font-weight: normal;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-        h2 {
-            font-size: 1rem;
-            font-weight: normal;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-        .answer {
-            font-size: 2rem;
-            color: var(--accent);
-            margin: 1rem 0;
-        }
-        .subtitle {
-            color: var(--muted);
-            max-width: 600px;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        .blocks {
-            font-size: 1.5rem;
-            margin: 1rem 0;
-            letter-spacing: 0.25rem;
-        }
-        a {
-            color: var(--accent);
-        }
-        footer {
-            margin-top: 2rem;
-            color: var(--muted);
-            font-size: 0.85rem;
-        }
+:root {
+    --bg: #1d2021;
+    --fg: #d4be98;
+    --accent: #7daea3;
+    --muted: #665c54;
+    --table-bg: #282828;
+    --border: #3c3836;
+    --supported: #3d5a3d;
+    --unsupported: #5a3d3d;
+    --partial: #5a4d3d;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: monospace;
+    background: var(--bg);
+    color: var(--fg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    font-size: 14px;
+    line-height: 1.4;
+}
+h1 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+h2 {
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 0.5rem;
+    color: var(--accent);
+}
+.answer {
+    font-size: 2rem;
+    color: var(--accent);
+    margin: 1rem 0;
+}
+.subtitle {
+    color: var(--muted);
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.blocks {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    letter-spacing: 0.25rem;
+}
+a {
+    color: var(--accent);
+}
+footer {
+    margin-top: 2rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
 
-        /* Overview section */
-        .overview-section {
-            margin: 1rem 0;
-            width: 100%;
-            max-width: 900px;
-        }
-        .overview-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--table-bg);
-            border: 1px solid var(--border);
-        }
-        .overview-table th,
-        .overview-table td {
-            padding: 0.4rem 0.6rem;
-            text-align: left;
-            border: 1px solid var(--border);
-        }
-        .overview-table th {
-            background: var(--table-bg);
-            font-weight: normal;
-            color: var(--accent);
-        }
-        .overview-table .unicode-range {
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
-        .overview-table .emulator-name {
-            width: 100px;
-        }
-        .progress-cell {
-            padding: 0.3rem 0.6rem;
-        }
-        .progress-bar {
-            display: flex;
-            height: 16px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            overflow: hidden;
-            position: relative;
-        }
-        .progress-bar.empty {
-            background: var(--bg);
-        }
-        .progress-segment {
-            height: 100%;
-            position: relative;
-        }
-        .progress-segment .progress-fill {
-            height: 100%;
-        }
-        .progress-segment.important .progress-fill {
-            background: var(--supported);
-        }
-        .progress-segment.non-important .progress-fill {
-            background: var(--partial);
-        }
-        .progress-marker {
-            width: 1px;
-            height: 100%;
-            background: var(--accent);
-            flex-shrink: 0;
-        }
-        .progress-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.7rem;
-            margin-top: 2px;
-            color: var(--muted);
-        }
-        .progress-labels .label-important {
-            color: var(--accent);
-        }
+/* Overview section */
+.overview-section {
+    margin: 1rem 0;
+    width: 100%;
+    max-width: 900px;
+}
+.overview-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--table-bg);
+    border: 1px solid var(--border);
+}
+.overview-table th,
+.overview-table td {
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+    border: 1px solid var(--border);
+}
+.overview-table th {
+    background: var(--table-bg);
+    font-weight: normal;
+    color: var(--accent);
+}
+.overview-table .unicode-range {
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+.overview-table .emulator-name {
+    width: 100px;
+}
+.progress-cell {
+    padding: 0.3rem 0.6rem;
+}
+.progress-bar {
+    display: flex;
+    height: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+}
+.progress-bar.empty {
+    background: var(--bg);
+}
+.progress-segment {
+    height: 100%;
+    position: relative;
+}
+.progress-segment .progress-fill {
+    height: 100%;
+}
+.progress-segment.important .progress-fill {
+    background: var(--supported);
+}
+.progress-segment.non-important .progress-fill {
+    background: var(--partial);
+}
+.progress-marker {
+    width: 1px;
+    height: 100%;
+    background: var(--accent);
+    flex-shrink: 0;
+}
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    margin-top: 2px;
+    color: var(--muted);
+}
+.progress-labels .label-important {
+    color: var(--accent);
+}
 
-        /* Section header with inline toggle */
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .section-header h2 {
-            margin: 0;
-        }
+/* Section header with inline toggle */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.section-header h2 {
+    margin: 0;
+}
 
-        /* Filter toggle */
-        .filter-toggle {
-            display: flex;
-            gap: 0;
-            border: 1px solid var(--border);
-        }
-        .filter-toggle button {
-            background: var(--bg);
-            color: var(--muted);
-            border: none;
-            padding: 0.25rem 0.5rem;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 0.75rem;
-        }
-        .filter-toggle button:not(:last-child) {
-            border-right: 1px solid var(--border);
-        }
-        .filter-toggle button:hover {
-            color: var(--fg);
-        }
-        .filter-toggle button.active {
-            background: var(--table-bg);
-            color: var(--accent);
-        }
+/* Filter toggle */
+.filter-toggle {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+}
+.filter-toggle button {
+    background: var(--bg);
+    color: var(--muted);
+    border: none;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.75rem;
+}
+.filter-toggle button:not(:last-child) {
+    border-right: 1px solid var(--border);
+}
+.filter-toggle button:hover {
+    color: var(--fg);
+}
+.filter-toggle button.active {
+    background: var(--table-bg);
+    color: var(--accent);
+}
 
-        /* Table visibility based on filter (per-section) */
-        .table-section.show-all .table-important {
-            display: none;
-        }
-        .table-section.show-important .table-all {
-            display: none;
-        }
+/* Table visibility based on filter (per-section) */
+.table-section.show-all .table-important {
+    display: none;
+}
+.table-section.show-important .table-all {
+    display: none;
+}
 
-        /* Table scroll container */
-        .table-scroll {
-            overflow-x: auto;
-        }
+/* Table scroll container */
+.table-scroll {
+    overflow-x: auto;
+}
 
-        /* Table styles */
-        .table-section {
-            margin: 1.5rem 0;
-            width: 100%;
-            max-width: 900px;
-        }
-        .table-section h2 {
-            font-size: 1rem;
-            color: var(--accent);
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--table-bg);
-            border: 1px solid var(--border);
-        }
-        th, td {
-            padding: 0.4rem 0.6rem;
-            text-align: left;
-            border: 1px solid var(--border);
-        }
-        th {
-            background: var(--table-bg);
-            font-weight: normal;
-            color: var(--accent);
-        }
-        td.full {
-            color: #a9b665;
-        }
-        td.partial {
-            color: #d8a657;
-        }
-        td.none {
-            color: #ea6962;
-        }
-        td.unknown {
-            color: var(--muted);
-        }
-        .totals-row {
-            background: var(--bg);
-        }
-        .totals-row td {
-            border-bottom: none;
-        }
+/* Table styles */
+.table-section {
+    margin: 1.5rem 0;
+    width: 100%;
+    max-width: 900px;
+}
+.table-section h2 {
+    font-size: 1rem;
+    color: var(--accent);
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--table-bg);
+    border: 1px solid var(--border);
+}
+th, td {
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+    border: 1px solid var(--border);
+}
+th {
+    background: var(--table-bg);
+    font-weight: normal;
+    color: var(--accent);
+}
+td.full {
+    color: #a9b665;
+}
+td.partial {
+    color: #d8a657;
+}
+td.none {
+    color: #ea6962;
+}
+td.unknown {
+    color: var(--muted);
+}
+.totals-row {
+    background: var(--bg);
+}
+.totals-row td {
+    border-bottom: none;
+}
 
-        /* Character grid styles */
-        .char-grid-section {
-            margin: 2rem 0;
-            width: 100%;
-            max-width: 900px;
-        }
-        .toggle-group {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-        .emulator-toggle {
-            display: flex;
-            gap: 0;
-            border: 1px solid var(--border);
-            width: fit-content;
-        }
-        .emulator-toggle button {
-            background: var(--bg);
-            color: var(--muted);
-            border: none;
-            padding: 0.25rem 0.5rem;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 0.75rem;
-        }
-        .emulator-toggle button:not(:last-child) {
-            border-right: 1px solid var(--border);
-        }
-        .emulator-toggle button:hover {
-            color: var(--fg);
-        }
-        .emulator-toggle button.active {
-            background: var(--table-bg);
-            color: var(--accent);
-        }
-        .grid-container {
-            overflow-x: auto;
-        }
-        .grid-col-headers {
-            display: grid;
-            grid-template-columns: 40px repeat(16, 44px);
-            gap: 1px;
-            margin-bottom: 1px;
-        }
-        .grid-col-header {
-            text-align: center;
-            font-size: 0.7rem;
-            color: var(--muted);
-            padding: 2px 0;
-        }
-        .char-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
-        }
-        .grid-row {
-            display: grid;
-            grid-template-columns: 40px repeat(16, 44px);
-            gap: 1px;
-        }
-        /* Hide entire unimportant rows when filtering */
-        .char-grid-section.show-important .grid-row.row-unimportant {
-            display: none;
-        }
-        .grid-row-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            color: var(--muted);
-            background: var(--table-bg);
-        }
-        .grid-cell {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2px;
-            min-height: 48px;
-            position: relative;
-        }
-        .grid-cell.supported {
-            background: var(--supported);
-        }
-        .grid-cell.unsupported {
-            background: var(--unsupported);
-        }
-        .grid-cell.partial {
-            background: var(--partial);
-        }
-        .grid-cell.unknown {
-            background: var(--table-bg);
-        }
-        /* Reduce background opacity for unimportant cells when filtering */
-        .char-grid-section.show-important .grid-cell.unimportant.supported {
-            background: rgba(61, 90, 61, 0.25);
-        }
-        .char-grid-section.show-important .grid-cell.unimportant.unsupported {
-            background: rgba(90, 61, 61, 0.25);
-        }
-        .char-grid-section.show-important .grid-cell.unimportant.partial {
-            background: rgba(90, 77, 61, 0.25);
-        }
-        .char-grid-section.show-important .grid-cell.unimportant.unknown {
-            background: rgba(40, 40, 40, 0.25);
-        }
-        .grid-cell .glyph {
-            width: 28px;
-            height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .grid-cell .glyph svg {
-            width: 24px;
-            height: 24px;
-            fill: var(--fg);
-        }
-        .grid-cell .glyph.empty {
-            opacity: 0.3;
-        }
-        .grid-cell .code {
-            font-size: 0.55rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 1px;
-        }
+/* Character grid styles */
+.char-grid-section {
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 900px;
+}
+.toggle-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+.emulator-toggle {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    width: fit-content;
+}
+.emulator-toggle button {
+    background: var(--bg);
+    color: var(--muted);
+    border: none;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.75rem;
+}
+.emulator-toggle button:not(:last-child) {
+    border-right: 1px solid var(--border);
+}
+.emulator-toggle button:hover {
+    color: var(--fg);
+}
+.emulator-toggle button.active {
+    background: var(--table-bg);
+    color: var(--accent);
+}
+.grid-container {
+    overflow-x: auto;
+}
+.grid-col-headers {
+    display: grid;
+    grid-template-columns: 40px repeat(16, 44px);
+    gap: 1px;
+    margin-bottom: 1px;
+}
+.grid-col-header {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--muted);
+    padding: 2px 0;
+}
+.char-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+.grid-row {
+    display: grid;
+    grid-template-columns: 40px repeat(16, 44px);
+    gap: 1px;
+}
+/* Hide entire unimportant rows when filtering */
+.char-grid-section.show-important .grid-row.row-unimportant {
+    display: none;
+}
+.grid-row-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    color: var(--muted);
+    background: var(--table-bg);
+}
+.grid-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    min-height: 48px;
+    position: relative;
+}
+.grid-cell.supported {
+    background: var(--supported);
+}
+.grid-cell.unsupported {
+    background: var(--unsupported);
+}
+.grid-cell.partial {
+    background: var(--partial);
+}
+.grid-cell.unknown {
+    background: var(--table-bg);
+}
+/* Reduce background opacity for unimportant cells when filtering */
+.char-grid-section.show-important .grid-cell.unimportant.supported {
+    background: rgba(61, 90, 61, 0.25);
+}
+.char-grid-section.show-important .grid-cell.unimportant.unsupported {
+    background: rgba(90, 61, 61, 0.25);
+}
+.char-grid-section.show-important .grid-cell.unimportant.partial {
+    background: rgba(90, 77, 61, 0.25);
+}
+.char-grid-section.show-important .grid-cell.unimportant.unknown {
+    background: rgba(40, 40, 40, 0.25);
+}
+.grid-cell .glyph {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.grid-cell .glyph svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--fg);
+}
+.grid-cell .glyph.empty {
+    opacity: 0.3;
+}
+.grid-cell .code {
+    font-size: 0.55rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1px;
+}
+
     </style>
 </head>
 <body>
@@ -375,7 +376,7 @@
         and its supplement block (U+1CC00-U+1CEBF) in modern terminal emulators and fonts.
     </p>
 
-    
+
     <div class="overview-section">
         <h2>Overview</h2>
         <div class="table-scroll">
@@ -535,7 +536,7 @@
     </div>
     
 
-    
+
     <div class="table-section show-important" data-section="main">
         <div class="section-header">
             <h2>Symbols for Legacy Computing (U+1FB00-U+1FBFF)</h2>
@@ -617,7 +618,7 @@
     </div>
     
 
-    
+
     <div class="char-grid-section show-important">
         <div class="section-header">
             <h2>Character Support Grid (U+1FB00-U+1FBFF)</h2>
@@ -19542,42 +19543,43 @@
     </footer>
 
     <script>
-        // Per-section filter toggle (for both table sections and grid sections)
-        document.querySelectorAll('.filter-toggle').forEach(toggle => {
-            toggle.querySelectorAll('button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const filter = btn.dataset.filter;
-                    const section = btn.closest('.table-section, .char-grid-section');
+// Per-section filter toggle (for both table sections and grid sections)
+document.querySelectorAll('.filter-toggle').forEach(toggle => {
+    toggle.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.dataset.filter;
+            const section = btn.closest('.table-section, .char-grid-section');
 
-                    // Update active button
-                    toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
+            // Update active button
+            toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-                    // Update section class
-                    section.classList.remove('show-important', 'show-all');
-                    section.classList.add('show-' + filter);
-                });
+            // Update section class
+            section.classList.remove('show-important', 'show-all');
+            section.classList.add('show-' + filter);
+        });
+    });
+});
+
+// Emulator grid toggle
+document.querySelectorAll('.emulator-toggle').forEach(toggle => {
+    toggle.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const emulator = btn.dataset.emulator;
+            const section = btn.closest('.char-grid-section');
+
+            // Update active button
+            toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Show/hide grids
+            section.querySelectorAll('.grid-wrapper').forEach(wrapper => {
+                wrapper.style.display = wrapper.dataset.emulator === emulator ? '' : 'none';
             });
         });
+    });
+});
 
-        // Emulator grid toggle
-        document.querySelectorAll('.emulator-toggle').forEach(toggle => {
-            toggle.querySelectorAll('button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const emulator = btn.dataset.emulator;
-                    const section = btn.closest('.char-grid-section');
-
-                    // Update active button
-                    toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    // Show/hide grids
-                    section.querySelectorAll('.grid-wrapper').forEach(wrapper => {
-                        wrapper.style.display = wrapper.dataset.emulator === emulator ? '' : 'none';
-                    });
-                });
-            });
-        });
     </script>
 </body>
 </html>
