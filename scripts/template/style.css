@@ -9,7 +9,11 @@
     --unsupported: #5a3d3d;
     --partial: #5a4d3d;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 body {
     font-family: monospace;
     background: var(--bg);
@@ -201,7 +205,8 @@ table {
     background: var(--table-bg);
     border: 1px solid var(--border);
 }
-th, td {
+th,
+td {
     padding: 0.4rem 0.6rem;
     text-align: left;
     border: 1px solid var(--border);
