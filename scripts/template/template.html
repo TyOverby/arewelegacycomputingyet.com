@@ -10,12 +10,36 @@
     </head>
     <body>
         <h1>Are We Legacy Computing Yet?</h1>
-        <div class="blocks">🬀 🬁 🬂 🬃 🬄 🬅 🬆 🬇</div>
-        <div class="answer">Not yet.</div>
         <p class="subtitle">
             Tracking terminal emulator support for Unicode's "Symbols for Legacy
             Computing" (U+1FB00-U+1FBFF) and its supplement block
-            (U+1CC00-U+1CEBF).
+            (U+1CC00-U+1CEBF)
+        </p>
+
+        <p>
+            <a href="./sources/U1FB00_symbols_for_legacy_computing.pdf"
+                >Symbols for Legacy Computing</a
+            >
+            and its
+            <a
+                href="./sources/U1CC00_symbols_for_legacy_computing_supplement.pdf"
+                >supplement</a
+            >
+            are unicode blocks containing graphical characters that were found
+            on computers from the 70s and 90s. These characters were used to
+            show
+            <a href="https://en.wikipedia.org/wiki/Semigraphics"
+                >semi-graphical
+            </a>
+            elements on the terminal's text grid, and were used to display
+            pictures, render games, and enhance terminal UIs.
+        </p>
+        <p>
+            Despite its limitations, terminal usage is more popular than ever,
+            with many developers using modern text based tools like neovim and
+            claude-code. The modern generation of terminal UI could benefit from
+            many of the graphical elements in these blocks to provide high
+            fidelity output and a more readable UI.
         </p>
 
         {{OVERVIEW}} {{TABLES}} {{CHAR_GRIDS}}
@@ -26,12 +50,7 @@
             >
         </footer>
 
-        <script>
-            {
-                {
-                    JS;
-                }
-            }
-        </script>
+        <!-- prettier-ignore -->
+        <script> {{JS}} </script>
     </body>
 </html>
