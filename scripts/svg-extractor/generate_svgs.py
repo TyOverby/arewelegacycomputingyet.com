@@ -127,30 +127,26 @@ def generate_section_html(section, section_id):
     title = section["title"]
     range_label = section["range_label"]
 
-    # Calculate grid dimensions
-    start_col = range_start >> 4
-    end_col = range_end >> 4
-    num_cols = end_col - start_col + 1
+    # Calculate grid dimensions (rows are now hex prefixes, columns are offsets 0-F)
+    start_row = range_start >> 4
+    end_row = range_end >> 4
+    num_rows = end_row - start_row + 1
 
-    # Generate column headers
-    col_headers = []
-    for col in range(start_col, end_col + 1):
-        col_headers.append(f"{col:X}")
-
+    # Column headers are now 0-F (offsets)
     html = f'''
     <div class="section">
         <h2>{range_label}    {title}    {range_label}</h2>
-        <div class="header-row" style="grid-template-columns: 30px repeat({num_cols}, 50px);">
+        <div class="header-row" style="grid-template-columns: 50px repeat(16, 50px);">
             <div class="header-cell"></div>
 '''
-    for header in col_headers:
-        html += f'            <div class="header-cell">{header}</div>\n'
+    for offset in range(16):
+        html += f'            <div class="header-cell">{offset:X}</div>\n'
 
     html += f'''        </div>
-        <div class="grid" id="grid{section_id}" style="grid-template-columns: 30px repeat({num_cols}, 50px);"></div>
+        <div class="grid" id="grid{section_id}" style="grid-template-columns: 50px repeat(16, 50px);"></div>
     </div>
 '''
-    return html, start_col, end_col, range_start, range_end
+    return html, start_row, end_row, range_start, range_end
 
 
 def generate_test_html(output_dir, block_config):
@@ -163,6 +159,9 @@ def generate_test_html(output_dir, block_config):
 <head>
     <title>{title}</title>
     <style>
+        *, *::before, *::after {{
+            box-sizing: border-box;
+        }}
         body {{
             font-family: Arial, sans-serif;
             background: white;
@@ -200,7 +199,7 @@ def generate_test_html(output_dir, block_config):
         .grid {{
             width: fit-content;
             display: grid;
-            gap: 1px;
+            gap: 0;
             border: 1px solid #000;
         }}
         .row-header {{
@@ -209,11 +208,13 @@ def generate_test_html(output_dir, block_config):
             justify-content: center;
             font-size: 10px;
             font-weight: bold;
-            background: #f8f8f8;
+            background: white;
             border-right: 1px solid #000;
         }}
         .cell {{
-            border: 1px solid #ccc;
+            border: none;
+            border-bottom: 1px solid #000;
+            border-left: 1px solid #000;
             text-align: center;
             padding: 2px;
             min-height: 55px;
@@ -223,7 +224,15 @@ def generate_test_html(output_dir, block_config):
             justify-content: space-between;
         }}
         .cell.empty {{
-            background: #f0f0f0;
+            background: white;
+        }}
+        /* Remove bottom border from last row of cells */
+        .grid > .cell:nth-last-child(-n+16) {{
+            border-bottom: none;
+        }}
+        /* Remove left border from first cell in each row */
+        .grid > .cell:nth-child(17n+2) {{
+            border-left: none;
         }}
         .glyph {{
             width: 32px;
@@ -238,7 +247,7 @@ def generate_test_html(output_dir, block_config):
         }}
         .code {{
             font-size: 7px;
-            color: #333;
+            color: #000;
             font-family: monospace;
         }}
     </style>
@@ -249,12 +258,12 @@ def generate_test_html(output_dir, block_config):
     # Generate HTML for each section
     section_configs = []
     for i, section in enumerate(sections):
-        section_html, start_col, end_col, range_start, range_end = generate_section_html(section, i)
+        section_html, start_row, end_row, range_start, range_end = generate_section_html(section, i)
         html_content += section_html
         section_configs.append({
             "id": i,
-            "startCol": start_col,
-            "endCol": end_col,
+            "startRow": start_row,
+            "endRow": end_row,
             "rangeStart": range_start,
             "rangeEnd": range_end,
         })
@@ -265,7 +274,7 @@ def generate_test_html(output_dir, block_config):
         const sections = [
 '''
     for cfg in section_configs:
-        html_content += f'''            {{ id: {cfg["id"]}, startCol: 0x{cfg["startCol"]:X}, endCol: 0x{cfg["endCol"]:X}, rangeStart: 0x{cfg["rangeStart"]:X}, rangeEnd: 0x{cfg["rangeEnd"]:X} }},
+        html_content += f'''            {{ id: {cfg["id"]}, startRow: 0x{cfg["startRow"]:X}, endRow: 0x{cfg["endRow"]:X}, rangeStart: 0x{cfg["rangeStart"]:X}, rangeEnd: 0x{cfg["rangeEnd"]:X} }},
 '''
 
     html_content += '''        ];
@@ -273,14 +282,15 @@ def generate_test_html(output_dir, block_config):
         sections.forEach(section => {
             const grid = document.getElementById('grid' + section.id);
 
-            for (let row = 0; row < 16; row++) {
+            // Rows are now hex prefixes, columns are offsets 0-F
+            for (let row = section.startRow; row <= section.endRow; row++) {
                 const rowHeader = document.createElement('div');
                 rowHeader.className = 'row-header';
                 rowHeader.textContent = row.toString(16).toUpperCase();
                 grid.appendChild(rowHeader);
 
-                for (let col = section.startCol; col <= section.endCol; col++) {
-                    const codepoint = (col << 4) | row;
+                for (let col = 0; col < 16; col++) {
+                    const codepoint = (row << 4) | col;
                     const hex = codepoint.toString(16).toUpperCase();
 
                     const cell = document.createElement('div');

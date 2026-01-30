@@ -3,6 +3,9 @@
 <head>
     <title>Symbols for Legacy Computing</title>
     <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
         body {
             font-family: Arial, sans-serif;
             background: white;
@@ -40,7 +43,7 @@
         .grid {
             width: fit-content;
             display: grid;
-            gap: 1px;
+            gap: 0;
             border: 1px solid #000;
         }
         .row-header {
@@ -49,11 +52,13 @@
             justify-content: center;
             font-size: 10px;
             font-weight: bold;
-            background: #f8f8f8;
+            background: white;
             border-right: 1px solid #000;
         }
         .cell {
-            border: 1px solid #ccc;
+            border: none;
+            border-bottom: 1px solid #000;
+            border-left: 1px solid #000;
             text-align: center;
             padding: 2px;
             min-height: 55px;
@@ -63,7 +68,15 @@
             justify-content: space-between;
         }
         .cell.empty {
-            background: #f0f0f0;
+            background: white;
+        }
+        /* Remove bottom border from last row of cells */
+        .grid > .cell:nth-last-child(-n+16) {
+            border-bottom: none;
+        }
+        /* Remove left border from first cell in each row */
+        .grid > .cell:nth-child(17n+2) {
+            border-left: none;
         }
         .glyph {
             width: 32px;
@@ -78,7 +91,7 @@
         }
         .code {
             font-size: 7px;
-            color: #333;
+            color: #000;
             font-family: monospace;
         }
     </style>
@@ -87,44 +100,45 @@
 
     <div class="section">
         <h2>1FB00 - 1FBFF    Symbols for Legacy Computing    1FB00 - 1FBFF</h2>
-        <div class="header-row" style="grid-template-columns: 30px repeat(16, 50px);">
+        <div class="header-row" style="grid-template-columns: 50px repeat(16, 50px);">
             <div class="header-cell"></div>
-            <div class="header-cell">1FB0</div>
-            <div class="header-cell">1FB1</div>
-            <div class="header-cell">1FB2</div>
-            <div class="header-cell">1FB3</div>
-            <div class="header-cell">1FB4</div>
-            <div class="header-cell">1FB5</div>
-            <div class="header-cell">1FB6</div>
-            <div class="header-cell">1FB7</div>
-            <div class="header-cell">1FB8</div>
-            <div class="header-cell">1FB9</div>
-            <div class="header-cell">1FBA</div>
-            <div class="header-cell">1FBB</div>
-            <div class="header-cell">1FBC</div>
-            <div class="header-cell">1FBD</div>
-            <div class="header-cell">1FBE</div>
-            <div class="header-cell">1FBF</div>
+            <div class="header-cell">0</div>
+            <div class="header-cell">1</div>
+            <div class="header-cell">2</div>
+            <div class="header-cell">3</div>
+            <div class="header-cell">4</div>
+            <div class="header-cell">5</div>
+            <div class="header-cell">6</div>
+            <div class="header-cell">7</div>
+            <div class="header-cell">8</div>
+            <div class="header-cell">9</div>
+            <div class="header-cell">A</div>
+            <div class="header-cell">B</div>
+            <div class="header-cell">C</div>
+            <div class="header-cell">D</div>
+            <div class="header-cell">E</div>
+            <div class="header-cell">F</div>
         </div>
-        <div class="grid" id="grid0" style="grid-template-columns: 30px repeat(16, 50px);"></div>
+        <div class="grid" id="grid0" style="grid-template-columns: 50px repeat(16, 50px);"></div>
     </div>
 
     <script>
         const sections = [
-            { id: 0, startCol: 0x1FB0, endCol: 0x1FBF, rangeStart: 0x1FB00, rangeEnd: 0x1FBFF },
+            { id: 0, startRow: 0x1FB0, endRow: 0x1FBF, rangeStart: 0x1FB00, rangeEnd: 0x1FBFF },
         ];
 
         sections.forEach(section => {
             const grid = document.getElementById('grid' + section.id);
 
-            for (let row = 0; row < 16; row++) {
+            // Rows are now hex prefixes, columns are offsets 0-F
+            for (let row = section.startRow; row <= section.endRow; row++) {
                 const rowHeader = document.createElement('div');
                 rowHeader.className = 'row-header';
                 rowHeader.textContent = row.toString(16).toUpperCase();
                 grid.appendChild(rowHeader);
 
-                for (let col = section.startCol; col <= section.endCol; col++) {
-                    const codepoint = (col << 4) | row;
+                for (let col = 0; col < 16; col++) {
+                    const codepoint = (row << 4) | col;
                     const hex = codepoint.toString(16).toUpperCase();
 
                     const cell = document.createElement('div');
