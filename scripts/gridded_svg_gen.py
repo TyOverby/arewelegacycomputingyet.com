@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.11"
+# dependencies = ["beautifulsoup4>=4.12"]
+# ///
 """
 Gridded SVG generator for arewelegacycomputingyet.com
 
@@ -11,10 +15,10 @@ Usage:
 If output path is omitted, writes <input>.html alongside the input file.
 """
 
-import html
-import re
 import sys
 from pathlib import Path
+
+from bs4 import BeautifulSoup
 
 
 def find_svg(codepoint: int, svg_dirs: list[Path]) -> str | None:
@@ -52,6 +56,8 @@ def render_cell(char: str, svg_dirs: list[Path]) -> str:
         return f'<div class="cell filled" data-cp="{cp_str}"></div>'
     elif cp == 0x258C:  # ▌ LEFT HALF BLOCK
         return f'<div class="cell half-left" data-cp="{cp_str}"></div>'
+    elif cp == 0x2B24:  # ⬤ LARGE BLACK CIRCLE
+        return f'<div class="cell circle" data-cp="{cp_str}"></div>'
     elif char.strip() == "":
         return f'<div class="cell space" data-cp="{cp_str}"></div>'
     else:
@@ -83,11 +89,17 @@ def default_output_path(input_path: Path) -> Path:
 def generate_html(text_path: Path, svg_dirs: list[Path]) -> str:
     raw = text_path.read_text(encoding="utf-8")
 
-    pre_match = re.search(r"<pre>(.*?)</pre>?", raw, re.DOTALL)
-    if pre_match:
-        pre_text = html.unescape(pre_match.group(1)).strip()
-        grid_html = render_grid(pre_text, svg_dirs)
-        body_content = raw[: pre_match.start()] + grid_html + raw[pre_match.end() :]
+    soup = BeautifulSoup(raw, "html.parser")
+    pre_tags = soup.find_all("pre")
+    if pre_tags:
+        for pre in pre_tags:
+            style = pre.get("style", "")
+            grid_html = render_grid(pre.get_text().strip(), svg_dirs)
+            grid_soup = BeautifulSoup(grid_html, "html.parser")
+            if style:
+                grid_soup.find("div", class_="grid")["style"] = style
+            pre.replace_with(grid_soup)
+        body_content = str(soup)
     else:
         body_content = render_grid(raw, svg_dirs)
 
@@ -147,6 +159,9 @@ def generate_html(text_path: Path, svg_dirs: list[Path]) -> str:
   }}
   .cell.half-left {{
     background: linear-gradient(to right, var(--fg) 50%, transparent 50%);
+  }}
+  .cell.circle {{
+    background: radial-gradient(circle, var(--fg) 50%, transparent 50%);
   }}
   .cell.unknown {{
     background: #3a2a1a;

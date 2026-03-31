@@ -18,6 +18,61 @@ document.querySelectorAll(".filter-toggle").forEach((toggle) => {
     });
 });
 
+// Demo grid popover
+const demoPopover = document.getElementById("demo-popover");
+if (demoPopover) {
+    let demoPinned = null;
+
+    function demoShowAt(cell, x, y) {
+        demoPopover.textContent = cell.dataset.cp;
+        demoPopover.style.display = "block";
+        demoPlace(x, y);
+    }
+    function demoPlace(x, y) {
+        const pad = 8;
+        demoPopover.style.left = "0";
+        demoPopover.style.top = "0";
+        const pw = demoPopover.offsetWidth,
+            ph = demoPopover.offsetHeight;
+        let left = x + pad,
+            top = y - ph - pad;
+        if (left + pw > window.innerWidth) left = x - pw - pad;
+        if (top < 0) top = y + pad;
+        demoPopover.style.left = left + "px";
+        demoPopover.style.top = top + "px";
+    }
+    function demoHide() {
+        demoPopover.style.display = "none";
+        if (demoPinned) {
+            demoPinned.classList.remove("active");
+            demoPinned = null;
+        }
+    }
+    document.querySelectorAll(".demo-cell[data-cp]").forEach((cell) => {
+        cell.addEventListener("mouseenter", (e) => {
+            if (!demoPinned) demoShowAt(cell, e.clientX, e.clientY);
+        });
+        cell.addEventListener("mousemove", (e) => {
+            if (!demoPinned) demoPlace(e.clientX, e.clientY);
+        });
+        cell.addEventListener("mouseleave", () => {
+            if (!demoPinned) demoHide();
+        });
+        cell.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (demoPinned === cell) {
+                demoHide();
+            } else {
+                if (demoPinned) demoPinned.classList.remove("active");
+                demoPinned = cell;
+                demoPinned.classList.add("active");
+                demoShowAt(cell, e.clientX, e.clientY);
+            }
+        });
+    });
+    document.addEventListener("click", demoHide);
+}
+
 // Emulator grid toggle
 document.querySelectorAll(".emulator-toggle").forEach((toggle) => {
     toggle.querySelectorAll("button").forEach((btn) => {

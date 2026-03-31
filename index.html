@@ -379,6 +379,72 @@ td.unknown {
     margin-top: 1px;
 }
 
+/* Demo grid section */
+.demos-section {
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 900px;
+}
+.demo-item {
+    margin-bottom: 2rem;
+}
+.demo-grid {
+    display: block;
+    line-height: 0;
+    margin: 1rem 0;
+}
+.demo-row {
+    display: flex;
+}
+.demo-cell {
+    --demo-cell-size: 32px;
+    position: relative;
+    width: var(--demo-cell-size);
+    height: var(--demo-cell-size);
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 1px var(--border);
+}
+.demo-cell:hover::after,
+.demo-cell.active::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--accent);
+    pointer-events: none;
+    z-index: 1;
+}
+.demo-cell.glyph svg {
+    width: var(--demo-cell-size);
+    height: var(--demo-cell-size);
+    display: block;
+    fill: var(--fg);
+}
+.demo-cell.filled {
+    background: var(--fg);
+    box-shadow:none;
+}
+.demo-cell.half-left {
+    background: linear-gradient(to right, var(--fg) 50%, transparent 50%);
+}
+.demo-cell.circle {
+    background: radial-gradient(circle, var(--fg) 15px, transparent 15px);
+}
+.demo-cell.unknown {
+    background: #3a2a1a;
+}
+#demo-popover {
+    position: fixed;
+    background: #282828;
+    color: var(--fg);
+    border: 1px solid var(--accent);
+    padding: 2px 6px;
+    font-family: monospace;
+    font-size: 0.75rem;
+    pointer-events: none;
+    display: none;
+    z-index: 100;
+}
+
         </style>
     </head>
     <body>
@@ -417,7 +483,222 @@ td.unknown {
             support them all.
         </p>
 
-        <p></p>
+        <div class="demos-section"><div class="demo-item">
+The <b><i>smooth mosaic</i></b> terminal graphic characters
+can be used to draw filled shapes, perfect for area charts or sparklines.
+
+<div class="demo-grid">
+<div class="demo-row"><div class="demo-cell glyph" data-cp="U+1FB4B"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 -160 720 560V-160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB69"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560 360 200 720 560V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB4C"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360L720 320V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB51"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320 720 80V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB46"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M720 320V-160H0V80Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB3E"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320 360 -160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB45"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M720 560V-160H0L360 560Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB4D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560 720 320V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB39"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB51"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320 720 80V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB2D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB3D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80 720 -160H0Z" fill="currentColor"></path>
+</g>
+</svg></div></div>
+</div>
+<div class="demo-grid">
+<div class="demo-row"><div class="demo-cell glyph" data-cp="U+1FB47"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 -160 720 80V-160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB46"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M720 320V-160H0V80Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB3E"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320 360 -160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB47"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 -160 720 80V-160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB3D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80 720 -160H0Z" fill="currentColor"></path>
+</g>
+</svg></div></div>
+</div>
+<div class="demo-grid" style="
+    transform: scaleX(0.6);
+    transform-origin: top left;
+">
+<div class="demo-row"><div class="demo-cell glyph" data-cp="U+1FB47"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 -160 720 80V-160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB2D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB3D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80 720 -160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell glyph" data-cp="U+1FB48"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 -160 720 80V-160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB2D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB3C"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80 360 -160H0Z" fill="currentColor"></path>
+</g>
+</svg></div></div>
+<div class="demo-row"><div class="demo-cell glyph" data-cp="U+1FB64"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 560H720V80Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB52"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V-160H360L0 80Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell filled" data-cp="U+2588"></div><div class="demo-cell glyph" data-cp="U+1FB69"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560 360 200 720 560V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell filled" data-cp="U+2588"></div><div class="demo-cell glyph" data-cp="U+1FB5D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V80L360 -160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB59"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360L0 80Z" fill="currentColor"></path>
+</g>
+</svg></div></div>
+<div class="demo-row"><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell glyph" data-cp="U+1FB62"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 560H720V320Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB55"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V-160L0 320Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell filled" data-cp="U+2588"></div><div class="demo-cell glyph" data-cp="U+1FB60"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V320L0 -160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB57"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360L0 320Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell space" data-cp="U+0020"></div></div>
+<div class="demo-row"><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell glyph" data-cp="U+1FB6D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720L360 200Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell space" data-cp="U+0020"></div></div>
+</div>
+</div><div class="demo-item">hello
+
+<div class="demo-grid">
+<div class="demo-row"><div class="demo-cell glyph" data-cp="U+1CEA0"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 20H720V-160H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1CDE1"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 380H720V-160H0V200H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1CDE4"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360V380H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1CDBB"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 200H360V20H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div></div>
+</div>
+</div><div class="demo-item">Circles can inhabit one of nine positions in a 2x2 grid. Potentially useful for
+games.
+
+<div class="demo-grid">
+<div class="demo-row"><div class="demo-cell circle" data-cp="U+2B24"></div><div class="demo-cell glyph" data-cp="U+1FBEE"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M720 200V-160H360Q360 -11 465.5 94.5Q571 200 720 200Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FBED"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 -160H0V200Q149 200 254.5 94.5Q360 -11 360 -160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FBEA"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M720 -160H0Q0 -11 105.5 94.5Q211 200 360.0 200.0Q509 200 614.5 94.5Q720 -11 720 -160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FBE9"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M720 -160Q571 -160 465.5 -54.5Q360 51 360.0 200.0Q360 349 465.5 454.5Q571 560 720 560Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FBEB"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 -160V560Q149 560 254.5 454.5Q360 349 360.0 200.0Q360 51 254.5 -54.5Q149 -160 0 -160Z" fill="currentColor"></path>
+</g>
+</svg></div></div>
+<div class="demo-row"><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell glyph" data-cp="U+1FBEC"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M720 200Q571 200 465.5 305.5Q360 411 360 560H720Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FBEF"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 200V560H360Q360 411 254.5 305.5Q149 200 0 200Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FBE8"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M720 560Q720 411 614.5 305.5Q509 200 360.0 200.0Q211 200 105.5 305.5Q0 411 0 560Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell space" data-cp="U+0020"></div></div>
+</div>
+</div></div>
+<div id="demo-popover"></div>
+
+        <h1>Terminal Emulator Support</h1>
+
         <p>
             <i>
                 <b>
@@ -436,8 +717,6 @@ td.unknown {
             drawn by the terminal have generous padding between characters or
             lines.
         </p>
-
-        <h1>Terminal Emulator Support</h1>
 
         <p>
             The
@@ -19661,6 +19940,61 @@ document.querySelectorAll(".filter-toggle").forEach((toggle) => {
         });
     });
 });
+
+// Demo grid popover
+const demoPopover = document.getElementById("demo-popover");
+if (demoPopover) {
+    let demoPinned = null;
+
+    function demoShowAt(cell, x, y) {
+        demoPopover.textContent = cell.dataset.cp;
+        demoPopover.style.display = "block";
+        demoPlace(x, y);
+    }
+    function demoPlace(x, y) {
+        const pad = 8;
+        demoPopover.style.left = "0";
+        demoPopover.style.top = "0";
+        const pw = demoPopover.offsetWidth,
+            ph = demoPopover.offsetHeight;
+        let left = x + pad,
+            top = y - ph - pad;
+        if (left + pw > window.innerWidth) left = x - pw - pad;
+        if (top < 0) top = y + pad;
+        demoPopover.style.left = left + "px";
+        demoPopover.style.top = top + "px";
+    }
+    function demoHide() {
+        demoPopover.style.display = "none";
+        if (demoPinned) {
+            demoPinned.classList.remove("active");
+            demoPinned = null;
+        }
+    }
+    document.querySelectorAll(".demo-cell[data-cp]").forEach((cell) => {
+        cell.addEventListener("mouseenter", (e) => {
+            if (!demoPinned) demoShowAt(cell, e.clientX, e.clientY);
+        });
+        cell.addEventListener("mousemove", (e) => {
+            if (!demoPinned) demoPlace(e.clientX, e.clientY);
+        });
+        cell.addEventListener("mouseleave", () => {
+            if (!demoPinned) demoHide();
+        });
+        cell.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (demoPinned === cell) {
+                demoHide();
+            } else {
+                if (demoPinned) demoPinned.classList.remove("active");
+                demoPinned = cell;
+                demoPinned.classList.add("active");
+                demoShowAt(cell, e.clientX, e.clientY);
+            }
+        });
+    });
+    document.addEventListener("click", demoHide);
+}
 
 // Emulator grid toggle
 document.querySelectorAll(".emulator-toggle").forEach((toggle) => {

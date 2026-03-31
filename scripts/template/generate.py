@@ -9,6 +9,8 @@ import csv
 from dataclasses import dataclass
 from pathlib import Path
 
+from bs4 import BeautifulSoup
+
 
 @dataclass
 class SectionDef:
@@ -524,6 +526,80 @@ def render_character_grid_section(
     """
 
 
+def render_demo_cell(char: str, svg_dirs: list[Path]) -> str:
+    """Render a single demo grid cell for a given character."""
+    cp = ord(char)
+    hex_code = f"U+{cp:05X}" if cp >= 0x10000 else f"U+{cp:04X}"
+    svg = None
+    for svg_dir in svg_dirs:
+        svg = load_svg(svg_dir / f"{hex_code}.svg")
+        if svg:
+            break
+    if svg:
+        return f'<div class="demo-cell glyph" data-cp="{hex_code}">{svg}</div>'
+    elif cp == 0x2588:  # █ FULL BLOCK
+        return f'<div class="demo-cell filled" data-cp="{hex_code}"></div>'
+    elif cp == 0x258C:  # ▌ LEFT HALF BLOCK
+        return f'<div class="demo-cell half-left" data-cp="{hex_code}"></div>'
+    elif cp == 0x2B24:  # ⬤ LARGE BLACK CIRCLE
+        return f'<div class="demo-cell circle" data-cp="{hex_code}"></div>'
+    elif char.strip() == "":
+        return f'<div class="demo-cell space" data-cp="{hex_code}"></div>'
+    else:
+        return f'<div class="demo-cell unknown" data-cp="{hex_code}"></div>'
+
+
+def render_demo_grid(text: str, svg_dirs: list[Path]) -> str:
+    """Render a block of text as a grid of demo cells."""
+    lines = text.split("\n")
+    if lines and lines[-1] == "":
+        lines = lines[:-1]
+    max_len = max((len(line) for line in lines), default=0)
+    grid = [list(line) + [" "] * (max_len - len(line)) for line in lines]
+    if not grid:
+        return ""
+    rows_html = "\n".join(
+        '<div class="demo-row">'
+        + "".join(render_demo_cell(ch, svg_dirs) for ch in row)
+        + "</div>"
+        for row in grid
+    )
+    return f'<div class="demo-grid">\n{rows_html}\n</div>'
+
+
+def render_demo_fragment(demo_path: Path, svg_dirs: list[Path]) -> str:
+    """Parse a .input.html file and return an HTML fragment with the grid injected."""
+    raw = demo_path.read_text(encoding="utf-8")
+    soup = BeautifulSoup(raw, "html.parser")
+    pre_tags = soup.find_all("pre")
+    if not pre_tags:
+        return render_demo_grid(raw, svg_dirs)
+    for pre in pre_tags:
+        style = pre.get("style", "")
+        grid_html = render_demo_grid(pre.get_text().strip(), svg_dirs)
+        grid_soup = BeautifulSoup(grid_html, "html.parser")
+        if style:
+            grid_soup.find("div", class_="demo-grid")["style"] = style
+        pre.replace_with(grid_soup)
+    return str(soup)
+
+
+def render_demos_section(demos_dir: Path, svg_dirs: list[Path]) -> str:
+    """Render all *.input.html demos as a single section."""
+    demo_files = sorted(demos_dir.glob("*.input.html"))
+    if not demo_files:
+        return ""
+    items = []
+    for demo_path in demo_files:
+        fragment = render_demo_fragment(demo_path, svg_dirs)
+        items.append(f'<div class="demo-item">{fragment}</div>')
+    return (
+        '<div class="demos-section">'
+        + "".join(items)
+        + '</div>\n<div id="demo-popover"></div>'
+    )
+
+
 def load_template_files(script_dir: Path) -> tuple[str, str, str]:
     """Load the template HTML, CSS, and JavaScript files."""
     template_html = (script_dir / "template.html").read_text()
@@ -536,6 +612,7 @@ def render_page(
     overview_html: str,
     tables_html: str,
     char_grids_html: str,
+    demos_html: str,
     template_html: str,
     css: str,
     js: str,
@@ -547,6 +624,7 @@ def render_page(
     html = html.replace("{{OVERVIEW}}", overview_html)
     html = html.replace("{{TABLES}}", tables_html)
     html = html.replace("{{CHAR_GRIDS}}", char_grids_html)
+    html = html.replace("{{DEMOS}}", demos_html)
     return html
 
 
@@ -649,10 +727,17 @@ def main():
         supplement_stats,
     )
 
+    # Generate demos
+    svg_dirs = [
+        project_root / "svgs" / "legacy_computing",
+        project_root / "svgs" / "legacy_computing_supplement",
+    ]
+    demos_html = render_demos_section(project_root / "demos", svg_dirs)
+
     # Load template files and generate the page
     template_html, css, js = load_template_files(script_dir)
     html = render_page(
-        overview_html, tables_html, char_grids_html, template_html, css, js
+        overview_html, tables_html, char_grids_html, demos_html, template_html, css, js
     )
     output_file.write_text(html)
     print(f"Generated {output_file}")

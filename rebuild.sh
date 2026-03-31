@@ -24,6 +24,7 @@ inotifywait -m -r -e modify,create,delete \
     "$SCRIPT_DIR/scripts/template" \
     "$SCRIPT_DIR/terminal-emulators" \
     "$SCRIPT_DIR/svgs" \
+    "$SCRIPT_DIR/demos" \
     2>/dev/null | while read -r directory events filename; do
     echo "Change detected: $directory$filename ($events)"
     echo "Regenerating index.html..."
