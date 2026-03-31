@@ -13,8 +13,9 @@ if ! command -v inotifywait &> /dev/null; then
 fi
 
 # Initial build
+cd $SCRIPT_DIR/scripts/template/
 echo "Running initial build..."
-python3 "$GENERATE_SCRIPT"
+uv run generate.py
 
 echo "Watching for changes... (Ctrl+C to stop)"
 
@@ -28,6 +29,6 @@ inotifywait -m -r -e modify,create,delete \
     2>/dev/null | while read -r directory events filename; do
     echo "Change detected: $directory$filename ($events)"
     echo "Regenerating index.html..."
-    python3 "$GENERATE_SCRIPT"
+    uv run generate.py
     echo "Done."
 done
