@@ -36,6 +36,10 @@ body {
     font-size: 14px;
     line-height: 1.4;
 }
+
+body > * {
+    max-width: 900px;
+}
 h1 {
     font-size: 1.5rem;
     font-weight: normal;
@@ -381,7 +385,6 @@ td.unknown {
 
 /* Demo grid section */
 .demos-section {
-    margin: 2rem 0;
     width: 100%;
     max-width: 900px;
 }
@@ -421,7 +424,7 @@ td.unknown {
 }
 .demo-cell.filled {
     background: var(--fg);
-    box-shadow:none;
+    box-shadow: none;
 }
 .demo-cell.half-left {
     background: linear-gradient(to right, var(--fg) 50%, transparent 50%);
@@ -465,8 +468,8 @@ td.unknown {
                 >supplement</a
             >
             are unicode blocks containing graphical characters that were found
-            on computers from the 70s and 90s. These characters were used to
-            show
+            on computers from the 70s, 80s, and 90s. These characters were used
+            to show
             <a href="https://en.wikipedia.org/wiki/Semigraphics"
                 >semi-graphical
             </a>
@@ -483,7 +486,12 @@ td.unknown {
             support them all.
         </p>
 
-        <div class="demos-section"><div class="demo-item">The <b><i>smooth mosaic</i></b> terminal graphic characters can be used to draw
+        <h1>Demos</h1>
+        <p>
+            Here's some demos of stuff that you can build with these characters.
+            If you have any that you'd like to contribute, please send them my
+            way! <div class="demos-section"><div class="demo-item"><h2>Smooth Mosaic</h2>
+The <b><i>smooth mosaic</i></b> terminal graphic characters can be used to draw
 filled shapes, perfect for area charts or sparklines.
 
 <div class="demo-grid">
@@ -631,8 +639,259 @@ Or graphical symbols
 </g>
 </svg></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell space" data-cp="U+0020"></div></div>
 </div>
-</div><div class="demo-item">hello
-
+</div><div class="demo-item"><h2>Sextant and Octant</h2>
+<p>
+    The Sextant (Legacy Computing) and Octant (Supplement) characters give you a
+    2x3 and 2x4 pixel grid (respectively).
+</p>
+<p>Use it for pixel art</p>
+<div class="demo-grid">
+<div class="demo-row"><div class="demo-cell glyph" data-cp="U+1FB00"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB01"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 560H720V320H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB02"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB03"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H360V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB04"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB05"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H360V80H0ZM360 560H720V320H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB06"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80V560H720V320H360V80Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB07"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 320H720V80H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB08"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 320H720V80H360ZM0 560H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB09"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 560H720V80H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB0A"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V80H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB0B"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H720V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB0C"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360V320H720V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB0D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 560H720V80H0V320H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB0E"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB0F"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H360V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div></div>
+<div class="demo-row"><div class="demo-cell glyph" data-cp="U+1FB10"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H360V-160H0ZM0 560H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB11"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H360V-160H0ZM360 560H720V320H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB12"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H360V-160H0ZM0 560H720V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB13"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H360V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB14"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H360V-160H0ZM360 560H720V320H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB15"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 -160V560H720V320H360V-160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB16"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H360V-160H0ZM360 320H720V80H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB17"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H360V-160H0ZM360 320H720V80H360ZM0 560H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB18"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H360V-160H0ZM360 560H720V80H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB19"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H360V-160H0ZM0 560H720V80H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB1A"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 -160V320H720V80H360V-160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB1B"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360V320H720V80H360V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB1C"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 -160V320H360V560H720V80H360V-160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB1D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 -160V560H720V80H360V-160Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB1E"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 80H720V-160H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB1F"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 80H720V-160H360ZM0 560H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div></div>
+<div class="demo-row"><div class="demo-cell glyph" data-cp="U+1FB20"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 80H720V-160H360ZM360 560H720V320H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB21"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 80H720V-160H360ZM0 560H720V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB22"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 80H720V-160H360ZM0 320H360V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB23"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 80H720V-160H360ZM0 560H360V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB24"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 80H720V-160H360ZM0 320H360V80H0ZM360 560H720V320H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB25"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 80H720V-160H360ZM0 80V560H720V320H360V80Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB26"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 320H720V-160H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB27"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 320H720V-160H360ZM0 560H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB28"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V-160H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB29"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H720V-160H360V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB2A"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360V320H720V-160H360V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB2B"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H360V560H720V-160H360V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB2C"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V-160H360V80H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB2D"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB2E"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H720V-160H0ZM0 560H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB2F"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H720V-160H0ZM360 560H720V320H360Z" fill="currentColor"></path>
+</g>
+</svg></div></div>
+<div class="demo-row"><div class="demo-cell glyph" data-cp="U+1FB30"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 80H720V-160H0ZM0 560H720V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB31"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H360V80H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB32"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360V80H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB33"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H360V80H720V-160H0ZM360 560H720V320H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB34"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V320H360V80H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB35"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 320H720V-160H0V80H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB36"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 320H720V-160H0V80H360ZM0 560H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB37"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 560H720V-160H0V80H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB38"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H720V-160H0V80H360V320H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB39"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 320H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB3A"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M0 560H360V320H720V-160H0Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell glyph" data-cp="U+1FB3B"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(0, 560) scale(1, -1)">
+<path d="M360 560H720V-160H0V320H360Z" fill="currentColor"></path>
+</g>
+</svg></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell space" data-cp="U+0020"></div><div class="demo-cell space" data-cp="U+0020"></div></div>
+</div>
+<p>Or sparklines</p>
 <div class="demo-grid">
 <div class="demo-row"><div class="demo-cell glyph" data-cp="U+1CEA0"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
 <g transform="translate(0, 560) scale(1, -1)">
@@ -693,6 +952,7 @@ games.
 </div>
 </div></div>
 <div id="demo-popover"></div>
+        </p>
 
         <h1>Terminal Emulator Support</h1>
 
@@ -738,10 +998,10 @@ games.
             these blocks, I configured each emulator to use a font that didn't
             contain glyphs for any of the characters and then used a script to
             print all of them anyway. Any characters that still appeared on
-            screen must have had custom logic in the emulator. That said, it was
-            a very manual process, and I may have made mistakes! If any of the
-            data is incorrect, please email me or submit a pull request against
-            the repository
+            screen must have had custom logic in the emulator. This was a very
+            manual process, and I may have made mistakes; If you notice that any
+            of the data is incorrect, please email me or submit a pull request
+            against the repository
             <a
                 href="https://github.com/TyOverby/arewelegacycomputingyet.com/tree/main/terminal-emulators/legacy_computing_compatibility"
                 >here</a
@@ -754,244 +1014,6 @@ games.
         </p>
 
         
-    <div class="overview-section">
-        <h2>Overview</h2>
-        <div class="table-scroll">
-            <table class="overview-table">
-                <thead>
-                    <tr>
-                        <th>Emulator</th>
-                        <th>Legacy Computing<br><span class="unicode-range">U+1FB00-U+1FBFF</span></th>
-                        <th>Legacy Computing Supplement<br><span class="unicode-range">U+1CC00-U+1CEBF</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td class="emulator-name">ghostty</td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 82.5%">
-                <div class="progress-fill" style="width: 100.0%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 17.5%">
-                <div class="progress-fill" style="width: 13.6%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">100%</span>
-            <span class="label-all">85%</span>
-        </div>
-    </td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 52.7%">
-                <div class="progress-fill" style="width: 99.5%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 47.3%">
-                <div class="progress-fill" style="width: 1.2%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">99%</span>
-            <span class="label-all">53%</span>
-        </div>
-    </td></tr><tr><td class="emulator-name">kitty</td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 82.5%">
-                <div class="progress-fill" style="width: 84.5%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 17.5%">
-                <div class="progress-fill" style="width: 25.0%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">85%</span>
-            <span class="label-all">74%</span>
-        </div>
-    </td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 52.7%">
-                <div class="progress-fill" style="width: 62.8%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 47.3%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">63%</span>
-            <span class="label-all">33%</span>
-        </div>
-    </td></tr><tr><td class="emulator-name">urxvt</td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 82.5%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 17.5%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">0%</span>
-            <span class="label-all">0%</span>
-        </div>
-    </td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 52.7%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 47.3%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">0%</span>
-            <span class="label-all">0%</span>
-        </div>
-    </td></tr><tr><td class="emulator-name">vte</td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 82.5%">
-                <div class="progress-fill" style="width: 93.2%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 17.5%">
-                <div class="progress-fill" style="width: 52.3%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">93%</span>
-            <span class="label-all">86%</span>
-        </div>
-    </td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 52.7%">
-                <div class="progress-fill" style="width: 78.7%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 47.3%">
-                <div class="progress-fill" style="width: 0.6%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">79%</span>
-            <span class="label-all">42%</span>
-        </div>
-    </td></tr><tr><td class="emulator-name">xtermjs</td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 82.5%">
-                <div class="progress-fill" style="width: 99.0%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 17.5%">
-                <div class="progress-fill" style="width: 56.8%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">99%</span>
-            <span class="label-all">92%</span>
-        </div>
-    </td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 52.7%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 47.3%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">0%</span>
-            <span class="label-all">0%</span>
-        </div>
-    </td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-     
-    <div class="table-section show-important" data-section="main">
-        <div class="section-header">
-            <h2>Symbols for Legacy Computing (U+1FB00-U+1FBFF)</h2>
-            <div class="filter-toggle">
-                <button class="filter-btn active" data-filter="important">Important</button>
-                <button class="filter-btn" data-filter="all">All</button>
-            </div>
-        </div>
-        <div class="table-scroll">
-            
-        <table id="main-all" class="table-all">
-            <thead>
-                <tr>
-                    <th>Section</th>
-                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Smooth mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="partial">95%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Window title bar</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Rectangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Diagonal fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Triangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Character cell diagonals</td><td class="full">100%</td><td class="partial">48%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Light solid line with stroke</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Terminal graphic</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">39%</td><td class="partial">48%</td></tr><tr><td>Arrows</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">40%</td><td class="partial">40%</td></tr><tr><td>Negative terminal graphic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="partial">33%</td><td class="partial">33%</td></tr><tr><td>Geometric shapes</td><td class="full">100%</td><td class="partial">12%</td><td class="none">0%</td><td class="partial">25%</td><td class="full">100%</td></tr><tr><td>Segmented digits</td><td class="none">0%</td><td class="partial">50%</td><td class="none">0%</td><td class="partial">50%</td><td class="partial">50%</td></tr>
-                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>85%</strong></td><td class="total"><strong>74%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>86%</strong></td><td class="total"><strong>91%</strong></td></tr>
-            </tbody>
-        </table>
-    
-            
-        <table id="main-important" class="table-important">
-            <thead>
-                <tr>
-                    <th>Section</th>
-                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Smooth mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="partial">95%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Rectangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Diagonal fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Character cell diagonals</td><td class="full">100%</td><td class="partial">48%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Negative terminal graphic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="partial">33%</td><td class="partial">33%</td></tr><tr><td>Geometric shapes</td><td class="full">100%</td><td class="partial">12%</td><td class="none">0%</td><td class="partial">25%</td><td class="full">100%</td></tr>
-                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>100%</strong></td><td class="total"><strong>85%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>93%</strong></td><td class="total"><strong>99%</strong></td></tr>
-            </tbody>
-        </table>
-    
-        </div>
-    </div>
-    
-    <div class="table-section show-important" data-section="supplement">
-        <div class="section-header">
-            <h2>Legacy Computing Supplement (U+1CC00-U+1CEBF)</h2>
-            <div class="filter-toggle">
-                <button class="filter-btn active" data-filter="important">Important</button>
-                <button class="filter-btn" data-filter="all">All</button>
-            </div>
-        </div>
-        <div class="table-scroll">
-            
-        <table id="supplement-all" class="table-all">
-            <thead>
-                <tr>
-                    <th>Section</th>
-                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Game sprites</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Rule segments</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Schematic symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Box drawing</td><td class="partial">80%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Fill</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Emoticon</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Terminal graphic</td><td class="partial">11%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">6%</td><td class="none">0%</td></tr><tr><td>Lines with tick marks</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Faces</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Icons</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Chess symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Outlined uppercase Latin alphabet</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Outlined digits</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Dashed lines</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Large type pieces</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Smalltalk symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr>
-                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>53%</strong></td><td class="total"><strong>33%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>42%</strong></td><td class="total"><strong>0%</strong></td></tr>
-            </tbody>
-        </table>
-    
-            
-        <table id="supplement-important" class="table-important">
-            <thead>
-                <tr>
-                    <th>Section</th>
-                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Box drawing</td><td class="partial">80%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr>
-                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>99%</strong></td><td class="total"><strong>63%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>79%</strong></td><td class="total"><strong>0%</strong></td></tr>
-            </tbody>
-        </table>
-    
-        </div>
-    </div>
-     
     <div class="char-grid-section show-important">
         <div class="section-header">
             <h2>Character Support Grid (U+1FB00-U+1FBFF)</h2>
@@ -1759,15 +1781,15 @@ games.
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M275.0 115.0Q240 150 240.0 200.0Q240 250 275.0 285.0Q310 320 360.0 320.0Q410 320 445.0 285.0Q480 250 480.0 200.0Q480 150 445.0 115.0Q410 80 360.0 80.0Q310 80 275.0 115.0ZM720 560V-160H0V-70H630V470H0V560Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBC</div></div><div class="grid-cell supported important" title="U+1FBBD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBC</div></div><div class="grid-cell supported unimportant" title="U+1FBBD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 503 303 200 0 -103ZM360 143 663 -160H57ZM417 200 720 503V-103ZM57 560H663L360 257Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBD</div></div><div class="grid-cell supported important" title="U+1FBBE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBD</div></div><div class="grid-cell supported unimportant" title="U+1FBBE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M417 -160 720 143V-160ZM0 560H720V257L303 -160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBE</div></div><div class="grid-cell supported important" title="U+1FBBF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBE</div></div><div class="grid-cell supported unimportant" title="U+1FBBF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M417 -160 720 143V-160ZM0 143 303 -160H0ZM417 560H720V257ZM0 560H303L0 257ZM663 200 360 -103 57 200 360 503Z" fill="currentColor"/>
   </g>
@@ -2755,15 +2777,15 @@ games.
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M275.0 115.0Q240 150 240.0 200.0Q240 250 275.0 285.0Q310 320 360.0 320.0Q410 320 445.0 285.0Q480 250 480.0 200.0Q480 150 445.0 115.0Q410 80 360.0 80.0Q310 80 275.0 115.0ZM720 560V-160H0V-70H630V470H0V560Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBC</div></div><div class="grid-cell supported important" title="U+1FBBD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBC</div></div><div class="grid-cell supported unimportant" title="U+1FBBD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 503 303 200 0 -103ZM360 143 663 -160H57ZM417 200 720 503V-103ZM57 560H663L360 257Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBD</div></div><div class="grid-cell supported important" title="U+1FBBE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBD</div></div><div class="grid-cell supported unimportant" title="U+1FBBE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M417 -160 720 143V-160ZM0 560H720V257L303 -160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBE</div></div><div class="grid-cell supported important" title="U+1FBBF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBE</div></div><div class="grid-cell supported unimportant" title="U+1FBBF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M417 -160 720 143V-160ZM0 143 303 -160H0ZM417 560H720V257ZM0 560H303L0 257ZM663 200 360 -103 57 200 360 503Z" fill="currentColor"/>
   </g>
@@ -3699,7 +3721,7 @@ games.
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M280 400H440V240H720V160H440V0H280V160H0V240H280Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBAF</div></div></div><div class="grid-row"><div class="grid-row-header">1FBB</div><div class="grid-cell unsupported unimportant" title="U+1FBB0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBAF</div></div></div><div class="grid-row row-unimportant"><div class="grid-row-header">1FBB</div><div class="grid-cell unsupported unimportant" title="U+1FBB0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M90 -160V560L630 65H315Z" fill="currentColor"/>
   </g>
@@ -3751,15 +3773,15 @@ games.
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M275.0 115.0Q240 150 240.0 200.0Q240 250 275.0 285.0Q310 320 360.0 320.0Q410 320 445.0 285.0Q480 250 480.0 200.0Q480 150 445.0 115.0Q410 80 360.0 80.0Q310 80 275.0 115.0ZM720 560V-160H0V-70H630V470H0V560Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBC</div></div><div class="grid-cell unsupported important" title="U+1FBBD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBC</div></div><div class="grid-cell unsupported unimportant" title="U+1FBBD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 503 303 200 0 -103ZM360 143 663 -160H57ZM417 200 720 503V-103ZM57 560H663L360 257Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBD</div></div><div class="grid-cell unsupported important" title="U+1FBBE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBD</div></div><div class="grid-cell unsupported unimportant" title="U+1FBBE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M417 -160 720 143V-160ZM0 560H720V257L303 -160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBE</div></div><div class="grid-cell unsupported important" title="U+1FBBF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBE</div></div><div class="grid-cell unsupported unimportant" title="U+1FBBF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M417 -160 720 143V-160ZM0 143 303 -160H0ZM417 560H720V257ZM0 560H303L0 257ZM663 200 360 -103 57 200 360 503Z" fill="currentColor"/>
   </g>
@@ -4747,15 +4769,15 @@ games.
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M275.0 115.0Q240 150 240.0 200.0Q240 250 275.0 285.0Q310 320 360.0 320.0Q410 320 445.0 285.0Q480 250 480.0 200.0Q480 150 445.0 115.0Q410 80 360.0 80.0Q310 80 275.0 115.0ZM720 560V-160H0V-70H630V470H0V560Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBC</div></div><div class="grid-cell partial important" title="U+1FBBD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBC</div></div><div class="grid-cell partial unimportant" title="U+1FBBD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 503 303 200 0 -103ZM360 143 663 -160H57ZM417 200 720 503V-103ZM57 560H663L360 257Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBD</div></div><div class="grid-cell partial important" title="U+1FBBE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBD</div></div><div class="grid-cell partial unimportant" title="U+1FBBE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M417 -160 720 143V-160ZM0 560H720V257L303 -160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBE</div></div><div class="grid-cell partial important" title="U+1FBBF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBE</div></div><div class="grid-cell partial unimportant" title="U+1FBBF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M417 -160 720 143V-160ZM0 143 303 -160H0ZM417 560H720V257ZM0 560H303L0 257ZM663 200 360 -103 57 200 360 503Z" fill="currentColor"/>
   </g>
@@ -5743,15 +5765,15 @@ games.
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M275.0 115.0Q240 150 240.0 200.0Q240 250 275.0 285.0Q310 320 360.0 320.0Q410 320 445.0 285.0Q480 250 480.0 200.0Q480 150 445.0 115.0Q410 80 360.0 80.0Q310 80 275.0 115.0ZM720 560V-160H0V-70H630V470H0V560Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBC</div></div><div class="grid-cell partial important" title="U+1FBBD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBC</div></div><div class="grid-cell partial unimportant" title="U+1FBBD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 503 303 200 0 -103ZM360 143 663 -160H57ZM417 200 720 503V-103ZM57 560H663L360 257Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBD</div></div><div class="grid-cell partial important" title="U+1FBBE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBD</div></div><div class="grid-cell partial unimportant" title="U+1FBBE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M417 -160 720 143V-160ZM0 560H720V257L303 -160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1FBBE</div></div><div class="grid-cell partial important" title="U+1FBBF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1FBBE</div></div><div class="grid-cell partial unimportant" title="U+1FBBF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M417 -160 720 143V-160ZM0 143 303 -160H0ZM417 560H720V257ZM0 560H303L0 257ZM663 200 360 -103 57 200 360 503Z" fill="currentColor"/>
   </g>
@@ -19909,12 +19931,251 @@ games.
 </svg></div><div class="code">1CEBF</div></div></div></div></div>
         </div>
     </div>
+     
+    <div class="overview-section">
+        <h2>Overview</h2>
+        <div class="table-scroll">
+            <table class="overview-table">
+                <thead>
+                    <tr>
+                        <th>Emulator</th>
+                        <th>Legacy Computing<br><span class="unicode-range">U+1FB00-U+1FBFF</span></th>
+                        <th>Legacy Computing Supplement<br><span class="unicode-range">U+1CC00-U+1CEBF</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="emulator-name">ghostty</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 81.3%">
+                <div class="progress-fill" style="width: 100.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 18.7%">
+                <div class="progress-fill" style="width: 19.1%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">100%</span>
+            <span class="label-all">85%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 99.5%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 1.2%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">99%</span>
+            <span class="label-all">53%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">kitty</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 81.3%">
+                <div class="progress-fill" style="width: 84.3%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 18.7%">
+                <div class="progress-fill" style="width: 29.8%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">84%</span>
+            <span class="label-all">74%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 62.8%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">63%</span>
+            <span class="label-all">33%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">urxvt</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 81.3%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 18.7%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">0%</span>
+            <span class="label-all">0%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">0%</span>
+            <span class="label-all">0%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">vte</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 81.3%">
+                <div class="progress-fill" style="width: 94.1%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 18.7%">
+                <div class="progress-fill" style="width: 51.1%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">94%</span>
+            <span class="label-all">86%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 78.7%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 0.6%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">79%</span>
+            <span class="label-all">42%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">xtermjs</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 81.3%">
+                <div class="progress-fill" style="width: 100.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 18.7%">
+                <div class="progress-fill" style="width: 55.3%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">100%</span>
+            <span class="label-all">92%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">0%</span>
+            <span class="label-all">0%</span>
+        </div>
+    </td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+     
+    <div class="table-section show-important" data-section="main">
+        <div class="section-header">
+            <h2>Symbols for Legacy Computing (U+1FB00-U+1FBFF)</h2>
+            <div class="filter-toggle">
+                <button class="filter-btn active" data-filter="important">Important</button>
+                <button class="filter-btn" data-filter="all">All</button>
+            </div>
+        </div>
+        <div class="table-scroll">
+            
+        <table id="main-all" class="table-all">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Smooth mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="partial">95%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Window title bar</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Rectangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Diagonal fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Triangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Character cell diagonals</td><td class="full">100%</td><td class="partial">48%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Light solid line with stroke</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Terminal graphic</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">39%</td><td class="partial">48%</td></tr><tr><td>Arrows</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">40%</td><td class="partial">40%</td></tr><tr><td>Negative terminal graphic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="partial">33%</td><td class="partial">33%</td></tr><tr><td>Geometric shapes</td><td class="full">100%</td><td class="partial">12%</td><td class="none">0%</td><td class="partial">25%</td><td class="full">100%</td></tr><tr><td>Segmented digits</td><td class="none">0%</td><td class="partial">50%</td><td class="none">0%</td><td class="partial">50%</td><td class="partial">50%</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>85%</strong></td><td class="total"><strong>74%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>86%</strong></td><td class="total"><strong>91%</strong></td></tr>
+            </tbody>
+        </table>
+    
+            
+        <table id="main-important" class="table-important">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Smooth mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="partial">95%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Rectangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Diagonal fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Character cell diagonals</td><td class="full">100%</td><td class="partial">48%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Geometric shapes</td><td class="full">100%</td><td class="partial">12%</td><td class="none">0%</td><td class="partial">25%</td><td class="full">100%</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>100%</strong></td><td class="total"><strong>84%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>94%</strong></td><td class="total"><strong>100%</strong></td></tr>
+            </tbody>
+        </table>
+    
+        </div>
+    </div>
+    
+    <div class="table-section show-important" data-section="supplement">
+        <div class="section-header">
+            <h2>Legacy Computing Supplement (U+1CC00-U+1CEBF)</h2>
+            <div class="filter-toggle">
+                <button class="filter-btn active" data-filter="important">Important</button>
+                <button class="filter-btn" data-filter="all">All</button>
+            </div>
+        </div>
+        <div class="table-scroll">
+            
+        <table id="supplement-all" class="table-all">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Game sprites</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Rule segments</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Schematic symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Box drawing</td><td class="partial">80%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Fill</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Emoticon</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Terminal graphic</td><td class="partial">11%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">6%</td><td class="none">0%</td></tr><tr><td>Lines with tick marks</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Faces</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Icons</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Chess symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Outlined uppercase Latin alphabet</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Outlined digits</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Dashed lines</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Large type pieces</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Smalltalk symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>53%</strong></td><td class="total"><strong>33%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>42%</strong></td><td class="total"><strong>0%</strong></td></tr>
+            </tbody>
+        </table>
+    
+            
+        <table id="supplement-important" class="table-important">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Box drawing</td><td class="partial">80%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>99%</strong></td><td class="total"><strong>63%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>79%</strong></td><td class="total"><strong>0%</strong></td></tr>
+            </tbody>
+        </table>
+    
+        </div>
+    </div>
     
 
         <footer>
             <a href="https://github.com/tyoverby/arewelegacycomputingyet.com"
                 >View on GitHub</a
             >
+            <a href="mailto:ty@tyoverby.com">Email the author</a>
         </footer>
 
         <!-- prettier-ignore -->

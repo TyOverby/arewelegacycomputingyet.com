@@ -29,6 +29,10 @@ body {
     font-size: 14px;
     line-height: 1.4;
 }
+
+body > * {
+    max-width: 900px;
+}
 h1 {
     font-size: 1.5rem;
     font-weight: normal;
@@ -374,7 +378,6 @@ td.unknown {
 
 /* Demo grid section */
 .demos-section {
-    margin: 2rem 0;
     width: 100%;
     max-width: 900px;
 }
@@ -414,7 +417,7 @@ td.unknown {
 }
 .demo-cell.filled {
     background: var(--fg);
-    box-shadow:none;
+    box-shadow: none;
 }
 .demo-cell.half-left {
     background: linear-gradient(to right, var(--fg) 50%, transparent 50%);
