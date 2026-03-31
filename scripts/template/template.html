@@ -35,11 +35,56 @@
             pictures, render games, and enhance terminal UIs.
         </p>
         <p>
-            Despite its limitations, terminal usage is more popular than ever,
-            with many developers using modern text based tools like neovim and
+            Despite its age, terminal usage is more popular than ever, with many
+            developers using modern text based tools like neovim and
             claude-code. The modern generation of terminal UI could benefit from
             many of the graphical elements in these blocks to provide high
-            fidelity output and a more readable UI.
+            fidelity output and a more readable UI. However, support for these
+            characters isn't universal, and some terminals and fonts don't
+            support them all.
+        </p>
+
+        <p></p>
+        <p>
+            <i>
+                <b>
+                    These are unicode characters, why are you talking about
+                    terminal emulator support?
+                </b>
+            </i>
+            <br />
+            Although these codepoints could be drawn by the standard text
+            rendering in a terminal, very few fonts actually contain the paths
+            necessary to display them, so many terminal emulators implement
+            custom drawing routines for them instead. But there's another
+            benefit to having the terminal draw the glyphs: the paths can be
+            customized to the users display settings, allowing graphical
+            elements to properly connect to one another even if the other glyphs
+            drawn by the terminal have generous padding between characters or
+            lines.
+        </p>
+
+        <h1>Terminal Emulator Support</h1>
+
+        <h2>Methodology</h2>
+        <p>
+            To see which terminals implement custom drawing for codepoints in
+            these blocks, I configured each emulator to use a font that didn't
+            contain glyphs for any of the characters and then used a script to
+            print all of them anyway. Any characters that still appeared on
+            screen must have had custom logic in the emulator. That said, it was
+            a very manual process, and I may have made mistakes! If any of the
+            data is incorrect, please email me or submit a pull request against
+            the repository
+            <a
+                href="https://github.com/TyOverby/arewelegacycomputingyet.com/tree/main/terminal-emulators/legacy_computing_compatibility"
+                >here</a
+            >
+            or
+            <a
+                href="https://github.com/TyOverby/arewelegacycomputingyet.com/tree/main/terminal-emulators/legacy_computing_supplement_compatibility"
+                >here</a
+            >.
         </p>
 
         {{OVERVIEW}} {{TABLES}} {{CHAR_GRIDS}}

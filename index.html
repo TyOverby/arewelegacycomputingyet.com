@@ -21,6 +21,9 @@
     margin: 0;
     padding: 0;
 }
+p {
+    margin-bottom: 1em;
+}
 body {
     font-family: monospace;
     background: var(--bg);
@@ -336,18 +339,24 @@ td.unknown {
 .grid-cell.unknown {
     background: var(--table-bg);
 }
+.char-grid-section .grid-cell.unimportant {
+    opacity: 1;
+}
+.char-grid-section.show-important .grid-cell.unimportant {
+    opacity: 0.3;
+}
 /* Reduce background opacity for unimportant cells when filtering */
 .char-grid-section.show-important .grid-cell.unimportant.supported {
-    background: rgba(61, 90, 61, 0.25);
+    background: rgba(61, 90, 61);
 }
 .char-grid-section.show-important .grid-cell.unimportant.unsupported {
-    background: rgba(90, 61, 61, 0.25);
+    background: rgba(90, 61, 61);
 }
 .char-grid-section.show-important .grid-cell.unimportant.partial {
-    background: rgba(90, 77, 61, 0.25);
+    background: rgba(90, 77, 61);
 }
 .char-grid-section.show-important .grid-cell.unimportant.unknown {
-    background: rgba(40, 40, 40, 0.25);
+    background: rgba(40, 40, 40);
 }
 .grid-cell .glyph {
     width: 28px;
@@ -399,11 +408,56 @@ td.unknown {
             pictures, render games, and enhance terminal UIs.
         </p>
         <p>
-            Despite its limitations, terminal usage is more popular than ever,
-            with many developers using modern text based tools like neovim and
+            Despite its age, terminal usage is more popular than ever, with many
+            developers using modern text based tools like neovim and
             claude-code. The modern generation of terminal UI could benefit from
             many of the graphical elements in these blocks to provide high
-            fidelity output and a more readable UI.
+            fidelity output and a more readable UI. However, support for these
+            characters isn't universal, and some terminals and fonts don't
+            support them all.
+        </p>
+
+        <p></p>
+        <p>
+            <i>
+                <b>
+                    These are unicode characters, why are you talking about
+                    terminal emulator support?
+                </b>
+            </i>
+            <br />
+            Although these codepoints could be drawn by the standard text
+            rendering in a terminal, very few fonts actually contain the paths
+            necessary to display them, so many terminal emulators implement
+            custom drawing routines for them instead. But there's another
+            benefit to having the terminal draw the glyphs: the paths can be
+            customized to the users display settings, allowing graphical
+            elements to properly connect to one another even if the other glyphs
+            drawn by the terminal have generous padding between characters or
+            lines.
+        </p>
+
+        <h1>Terminal Emulator Support</h1>
+
+        <h2>Methodology</h2>
+        <p>
+            To see which terminals implement custom drawing for codepoints in
+            these blocks, I configured each emulator to use a font that didn't
+            contain glyphs for any of the characters and then used a script to
+            print all of them anyway. Any characters that still appeared on
+            screen must have had custom logic in the emulator. That said, it was
+            a very manual process, and I may have made mistakes! If any of the
+            data is incorrect, please email me or submit a pull request against
+            the repository
+            <a
+                href="https://github.com/TyOverby/arewelegacycomputingyet.com/tree/main/terminal-emulators/legacy_computing_compatibility"
+                >here</a
+            >
+            or
+            <a
+                href="https://github.com/TyOverby/arewelegacycomputingyet.com/tree/main/terminal-emulators/legacy_computing_supplement_compatibility"
+                >here</a
+            >.
         </p>
 
         
@@ -435,12 +489,12 @@ td.unknown {
         </div>
     </td><td class="progress-cell">
         <div class="progress-bar">
-            <div class="progress-segment important" style="width: 48.1%">
-                <div class="progress-fill" style="width: 99.4%"></div>
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 99.5%"></div>
             </div>
             <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 51.9%">
-                <div class="progress-fill" style="width: 10.0%"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 1.2%"></div>
             </div>
         </div>
         <div class="progress-labels">
@@ -463,16 +517,16 @@ td.unknown {
         </div>
     </td><td class="progress-cell">
         <div class="progress-bar">
-            <div class="progress-segment important" style="width: 48.1%">
-                <div class="progress-fill" style="width: 68.9%"></div>
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 62.8%"></div>
             </div>
             <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 51.9%">
+            <div class="progress-segment non-important" style="width: 47.3%">
                 <div class="progress-fill" style="width: 0.0%"></div>
             </div>
         </div>
         <div class="progress-labels">
-            <span class="label-important">69%</span>
+            <span class="label-important">63%</span>
             <span class="label-all">33%</span>
         </div>
     </td></tr><tr><td class="emulator-name">urxvt</td><td class="progress-cell">
@@ -491,11 +545,11 @@ td.unknown {
         </div>
     </td><td class="progress-cell">
         <div class="progress-bar">
-            <div class="progress-segment important" style="width: 48.1%">
+            <div class="progress-segment important" style="width: 52.7%">
                 <div class="progress-fill" style="width: 0.0%"></div>
             </div>
             <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 51.9%">
+            <div class="progress-segment non-important" style="width: 47.3%">
                 <div class="progress-fill" style="width: 0.0%"></div>
             </div>
         </div>
@@ -519,16 +573,16 @@ td.unknown {
         </div>
     </td><td class="progress-cell">
         <div class="progress-bar">
-            <div class="progress-segment important" style="width: 48.1%">
-                <div class="progress-fill" style="width: 76.6%"></div>
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 78.7%"></div>
             </div>
             <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 51.9%">
-                <div class="progress-fill" style="width: 9.4%"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 0.6%"></div>
             </div>
         </div>
         <div class="progress-labels">
-            <span class="label-important">77%</span>
+            <span class="label-important">79%</span>
             <span class="label-all">42%</span>
         </div>
     </td></tr><tr><td class="emulator-name">xtermjs</td><td class="progress-cell">
@@ -547,11 +601,11 @@ td.unknown {
         </div>
     </td><td class="progress-cell">
         <div class="progress-bar">
-            <div class="progress-segment important" style="width: 48.1%">
+            <div class="progress-segment important" style="width: 52.7%">
                 <div class="progress-fill" style="width: 0.0%"></div>
             </div>
             <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 51.9%">
+            <div class="progress-segment non-important" style="width: 47.3%">
                 <div class="progress-fill" style="width: 0.0%"></div>
             </div>
         </div>
@@ -637,8 +691,8 @@ td.unknown {
                 </tr>
             </thead>
             <tbody>
-                <tr><td>Box drawing</td><td class="partial">80%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr>
-                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>99%</strong></td><td class="total"><strong>69%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>77%</strong></td><td class="total"><strong>0%</strong></td></tr>
+                <tr><td>Box drawing</td><td class="partial">80%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>99%</strong></td><td class="total"><strong>63%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>79%</strong></td><td class="total"><strong>0%</strong></td></tr>
             </tbody>
         </table>
     
@@ -8271,131 +8325,131 @@ td.unknown {
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M40 520H320V360H40ZM400 520H680V360H400ZM40 280H320V120H40ZM400 280H680V120H400ZM40 40H320V-120H40ZM400 40H680V-120H400Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE8F</div></div></div><div class="grid-row"><div class="grid-row-header">1CE9</div><div class="grid-cell supported unimportant" title="U+1CE90"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE8F</div></div></div><div class="grid-row"><div class="grid-row-header">1CE9</div><div class="grid-cell supported important" title="U+1CE90"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE90</div></div><div class="grid-cell supported unimportant" title="U+1CE91"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE90</div></div><div class="grid-cell supported important" title="U+1CE91"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 560H360V380H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE91</div></div><div class="grid-cell supported unimportant" title="U+1CE92"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE91</div></div><div class="grid-cell supported important" title="U+1CE92"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 560H540V380H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE92</div></div><div class="grid-cell supported unimportant" title="U+1CE93"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE92</div></div><div class="grid-cell supported important" title="U+1CE93"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V380H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE93</div></div><div class="grid-cell supported unimportant" title="U+1CE94"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE93</div></div><div class="grid-cell supported important" title="U+1CE94"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 380H180V200H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE94</div></div><div class="grid-cell supported unimportant" title="U+1CE95"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE94</div></div><div class="grid-cell supported important" title="U+1CE95"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 380H360V200H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE95</div></div><div class="grid-cell supported unimportant" title="U+1CE96"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE95</div></div><div class="grid-cell supported important" title="U+1CE96"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 380H540V200H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE96</div></div><div class="grid-cell supported unimportant" title="U+1CE97"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE96</div></div><div class="grid-cell supported important" title="U+1CE97"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 380H720V200H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE97</div></div><div class="grid-cell supported unimportant" title="U+1CE98"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE97</div></div><div class="grid-cell supported important" title="U+1CE98"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 200H180V20H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE98</div></div><div class="grid-cell supported unimportant" title="U+1CE99"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE98</div></div><div class="grid-cell supported important" title="U+1CE99"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 200H360V20H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE99</div></div><div class="grid-cell supported unimportant" title="U+1CE9A"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE99</div></div><div class="grid-cell supported important" title="U+1CE9A"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 200H540V20H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9A</div></div><div class="grid-cell supported unimportant" title="U+1CE9B"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9A</div></div><div class="grid-cell supported important" title="U+1CE9B"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 200H720V20H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9B</div></div><div class="grid-cell supported unimportant" title="U+1CE9C"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9B</div></div><div class="grid-cell supported important" title="U+1CE9C"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9C</div></div><div class="grid-cell supported unimportant" title="U+1CE9D"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9C</div></div><div class="grid-cell supported important" title="U+1CE9D"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 20H360V-160H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9D</div></div><div class="grid-cell supported unimportant" title="U+1CE9E"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9D</div></div><div class="grid-cell supported important" title="U+1CE9E"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 20H540V-160H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9E</div></div><div class="grid-cell supported unimportant" title="U+1CE9F"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9E</div></div><div class="grid-cell supported important" title="U+1CE9F"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 20H720V-160H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9F</div></div></div><div class="grid-row"><div class="grid-row-header">1CEA</div><div class="grid-cell supported unimportant" title="U+1CEA0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9F</div></div></div><div class="grid-row"><div class="grid-row-header">1CEA</div><div class="grid-cell supported important" title="U+1CEA0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 20H720V-160H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA0</div></div><div class="grid-cell supported unimportant" title="U+1CEA1"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA0</div></div><div class="grid-cell supported important" title="U+1CEA1"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 20H720V-160H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA1</div></div><div class="grid-cell supported unimportant" title="U+1CEA2"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA1</div></div><div class="grid-cell supported important" title="U+1CEA2"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H540V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA2</div></div><div class="grid-cell supported unimportant" title="U+1CEA3"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA2</div></div><div class="grid-cell supported important" title="U+1CEA3"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H360V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA3</div></div><div class="grid-cell supported unimportant" title="U+1CEA4"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA3</div></div><div class="grid-cell supported important" title="U+1CEA4"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 200H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA4</div></div><div class="grid-cell supported unimportant" title="U+1CEA5"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA4</div></div><div class="grid-cell supported important" title="U+1CEA5"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 380H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA5</div></div><div class="grid-cell supported unimportant" title="U+1CEA6"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA5</div></div><div class="grid-cell supported important" title="U+1CEA6"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V20H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA6</div></div><div class="grid-cell supported unimportant" title="U+1CEA7"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA6</div></div><div class="grid-cell supported important" title="U+1CEA7"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V200H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA7</div></div><div class="grid-cell supported unimportant" title="U+1CEA8"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA7</div></div><div class="grid-cell supported important" title="U+1CEA8"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H360V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA8</div></div><div class="grid-cell supported unimportant" title="U+1CEA9"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA8</div></div><div class="grid-cell supported important" title="U+1CEA9"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H540V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA9</div></div><div class="grid-cell supported unimportant" title="U+1CEAA"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA9</div></div><div class="grid-cell supported important" title="U+1CEAA"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 560H720V380H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAA</div></div><div class="grid-cell supported unimportant" title="U+1CEAB"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAA</div></div><div class="grid-cell supported important" title="U+1CEAB"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 560H720V380H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAB</div></div><div class="grid-cell supported unimportant" title="U+1CEAC"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAB</div></div><div class="grid-cell supported important" title="U+1CEAC"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V200H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAC</div></div><div class="grid-cell supported unimportant" title="U+1CEAD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAC</div></div><div class="grid-cell supported important" title="U+1CEAD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V20H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAD</div></div><div class="grid-cell supported unimportant" title="U+1CEAE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAD</div></div><div class="grid-cell supported important" title="U+1CEAE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 380H720V-160H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAE</div></div><div class="grid-cell supported unimportant" title="U+1CEAF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAE</div></div><div class="grid-cell supported important" title="U+1CEAF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 200H720V-160H540Z" fill="currentColor"/>
   </g>
@@ -11051,131 +11105,131 @@ td.unknown {
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M40 520H320V360H40ZM400 520H680V360H400ZM40 280H320V120H40ZM400 280H680V120H400ZM40 40H320V-120H40ZM400 40H680V-120H400Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE8F</div></div></div><div class="grid-row row-unimportant"><div class="grid-row-header">1CE9</div><div class="grid-cell unsupported unimportant" title="U+1CE90"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE8F</div></div></div><div class="grid-row"><div class="grid-row-header">1CE9</div><div class="grid-cell unsupported important" title="U+1CE90"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE90</div></div><div class="grid-cell unsupported unimportant" title="U+1CE91"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE90</div></div><div class="grid-cell unsupported important" title="U+1CE91"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 560H360V380H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE91</div></div><div class="grid-cell unsupported unimportant" title="U+1CE92"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE91</div></div><div class="grid-cell unsupported important" title="U+1CE92"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 560H540V380H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE92</div></div><div class="grid-cell unsupported unimportant" title="U+1CE93"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE92</div></div><div class="grid-cell unsupported important" title="U+1CE93"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V380H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE93</div></div><div class="grid-cell unsupported unimportant" title="U+1CE94"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE93</div></div><div class="grid-cell unsupported important" title="U+1CE94"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 380H180V200H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE94</div></div><div class="grid-cell unsupported unimportant" title="U+1CE95"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE94</div></div><div class="grid-cell unsupported important" title="U+1CE95"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 380H360V200H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE95</div></div><div class="grid-cell unsupported unimportant" title="U+1CE96"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE95</div></div><div class="grid-cell unsupported important" title="U+1CE96"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 380H540V200H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE96</div></div><div class="grid-cell unsupported unimportant" title="U+1CE97"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE96</div></div><div class="grid-cell unsupported important" title="U+1CE97"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 380H720V200H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE97</div></div><div class="grid-cell unsupported unimportant" title="U+1CE98"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE97</div></div><div class="grid-cell unsupported important" title="U+1CE98"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 200H180V20H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE98</div></div><div class="grid-cell unsupported unimportant" title="U+1CE99"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE98</div></div><div class="grid-cell unsupported important" title="U+1CE99"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 200H360V20H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE99</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9A"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE99</div></div><div class="grid-cell unsupported important" title="U+1CE9A"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 200H540V20H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9A</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9B"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9A</div></div><div class="grid-cell unsupported important" title="U+1CE9B"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 200H720V20H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9B</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9C"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9B</div></div><div class="grid-cell unsupported important" title="U+1CE9C"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9C</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9D"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9C</div></div><div class="grid-cell unsupported important" title="U+1CE9D"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 20H360V-160H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9D</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9E"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9D</div></div><div class="grid-cell unsupported important" title="U+1CE9E"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 20H540V-160H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9E</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9F"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9E</div></div><div class="grid-cell unsupported important" title="U+1CE9F"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 20H720V-160H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9F</div></div></div><div class="grid-row row-unimportant"><div class="grid-row-header">1CEA</div><div class="grid-cell unsupported unimportant" title="U+1CEA0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9F</div></div></div><div class="grid-row"><div class="grid-row-header">1CEA</div><div class="grid-cell unsupported important" title="U+1CEA0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 20H720V-160H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA0</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA1"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA0</div></div><div class="grid-cell unsupported important" title="U+1CEA1"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 20H720V-160H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA1</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA2"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA1</div></div><div class="grid-cell unsupported important" title="U+1CEA2"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H540V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA2</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA3"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA2</div></div><div class="grid-cell unsupported important" title="U+1CEA3"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H360V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA3</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA4"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA3</div></div><div class="grid-cell unsupported important" title="U+1CEA4"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 200H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA4</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA5"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA4</div></div><div class="grid-cell unsupported important" title="U+1CEA5"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 380H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA5</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA6"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA5</div></div><div class="grid-cell unsupported important" title="U+1CEA6"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V20H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA6</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA7"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA6</div></div><div class="grid-cell unsupported important" title="U+1CEA7"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V200H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA7</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA8"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA7</div></div><div class="grid-cell unsupported important" title="U+1CEA8"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H360V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA8</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA9"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA8</div></div><div class="grid-cell unsupported important" title="U+1CEA9"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H540V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA9</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAA"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA9</div></div><div class="grid-cell unsupported important" title="U+1CEAA"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 560H720V380H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAA</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAB"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAA</div></div><div class="grid-cell unsupported important" title="U+1CEAB"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 560H720V380H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAB</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAC"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAB</div></div><div class="grid-cell unsupported important" title="U+1CEAC"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V200H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAC</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAC</div></div><div class="grid-cell unsupported important" title="U+1CEAD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V20H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAD</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAD</div></div><div class="grid-cell unsupported important" title="U+1CEAE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 380H720V-160H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAE</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAE</div></div><div class="grid-cell unsupported important" title="U+1CEAF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 200H720V-160H540Z" fill="currentColor"/>
   </g>
@@ -13831,131 +13885,131 @@ td.unknown {
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M40 520H320V360H40ZM400 520H680V360H400ZM40 280H320V120H40ZM400 280H680V120H400ZM40 40H320V-120H40ZM400 40H680V-120H400Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE8F</div></div></div><div class="grid-row row-unimportant"><div class="grid-row-header">1CE9</div><div class="grid-cell unsupported unimportant" title="U+1CE90"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE8F</div></div></div><div class="grid-row"><div class="grid-row-header">1CE9</div><div class="grid-cell unsupported important" title="U+1CE90"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE90</div></div><div class="grid-cell unsupported unimportant" title="U+1CE91"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE90</div></div><div class="grid-cell unsupported important" title="U+1CE91"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 560H360V380H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE91</div></div><div class="grid-cell unsupported unimportant" title="U+1CE92"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE91</div></div><div class="grid-cell unsupported important" title="U+1CE92"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 560H540V380H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE92</div></div><div class="grid-cell unsupported unimportant" title="U+1CE93"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE92</div></div><div class="grid-cell unsupported important" title="U+1CE93"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V380H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE93</div></div><div class="grid-cell unsupported unimportant" title="U+1CE94"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE93</div></div><div class="grid-cell unsupported important" title="U+1CE94"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 380H180V200H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE94</div></div><div class="grid-cell unsupported unimportant" title="U+1CE95"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE94</div></div><div class="grid-cell unsupported important" title="U+1CE95"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 380H360V200H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE95</div></div><div class="grid-cell unsupported unimportant" title="U+1CE96"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE95</div></div><div class="grid-cell unsupported important" title="U+1CE96"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 380H540V200H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE96</div></div><div class="grid-cell unsupported unimportant" title="U+1CE97"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE96</div></div><div class="grid-cell unsupported important" title="U+1CE97"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 380H720V200H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE97</div></div><div class="grid-cell unsupported unimportant" title="U+1CE98"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE97</div></div><div class="grid-cell unsupported important" title="U+1CE98"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 200H180V20H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE98</div></div><div class="grid-cell unsupported unimportant" title="U+1CE99"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE98</div></div><div class="grid-cell unsupported important" title="U+1CE99"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 200H360V20H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE99</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9A"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE99</div></div><div class="grid-cell unsupported important" title="U+1CE9A"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 200H540V20H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9A</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9B"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9A</div></div><div class="grid-cell unsupported important" title="U+1CE9B"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 200H720V20H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9B</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9C"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9B</div></div><div class="grid-cell unsupported important" title="U+1CE9C"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9C</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9D"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9C</div></div><div class="grid-cell unsupported important" title="U+1CE9D"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 20H360V-160H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9D</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9E"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9D</div></div><div class="grid-cell unsupported important" title="U+1CE9E"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 20H540V-160H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9E</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9F"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9E</div></div><div class="grid-cell unsupported important" title="U+1CE9F"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 20H720V-160H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9F</div></div></div><div class="grid-row row-unimportant"><div class="grid-row-header">1CEA</div><div class="grid-cell unsupported unimportant" title="U+1CEA0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9F</div></div></div><div class="grid-row"><div class="grid-row-header">1CEA</div><div class="grid-cell unsupported important" title="U+1CEA0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 20H720V-160H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA0</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA1"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA0</div></div><div class="grid-cell unsupported important" title="U+1CEA1"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 20H720V-160H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA1</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA2"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA1</div></div><div class="grid-cell unsupported important" title="U+1CEA2"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H540V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA2</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA3"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA2</div></div><div class="grid-cell unsupported important" title="U+1CEA3"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H360V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA3</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA4"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA3</div></div><div class="grid-cell unsupported important" title="U+1CEA4"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 200H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA4</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA5"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA4</div></div><div class="grid-cell unsupported important" title="U+1CEA5"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 380H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA5</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA6"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA5</div></div><div class="grid-cell unsupported important" title="U+1CEA6"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V20H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA6</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA7"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA6</div></div><div class="grid-cell unsupported important" title="U+1CEA7"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V200H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA7</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA8"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA7</div></div><div class="grid-cell unsupported important" title="U+1CEA8"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H360V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA8</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA9"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA8</div></div><div class="grid-cell unsupported important" title="U+1CEA9"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H540V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA9</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAA"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA9</div></div><div class="grid-cell unsupported important" title="U+1CEAA"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 560H720V380H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAA</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAB"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAA</div></div><div class="grid-cell unsupported important" title="U+1CEAB"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 560H720V380H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAB</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAC"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAB</div></div><div class="grid-cell unsupported important" title="U+1CEAC"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V200H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAC</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAC</div></div><div class="grid-cell unsupported important" title="U+1CEAD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V20H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAD</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAD</div></div><div class="grid-cell unsupported important" title="U+1CEAE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 380H720V-160H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAE</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAE</div></div><div class="grid-cell unsupported important" title="U+1CEAF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 200H720V-160H540Z" fill="currentColor"/>
   </g>
@@ -16611,131 +16665,131 @@ td.unknown {
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M40 520H320V360H40ZM400 520H680V360H400ZM40 280H320V120H40ZM400 280H680V120H400ZM40 40H320V-120H40ZM400 40H680V-120H400Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE8F</div></div></div><div class="grid-row"><div class="grid-row-header">1CE9</div><div class="grid-cell supported unimportant" title="U+1CE90"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE8F</div></div></div><div class="grid-row"><div class="grid-row-header">1CE9</div><div class="grid-cell supported important" title="U+1CE90"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE90</div></div><div class="grid-cell supported unimportant" title="U+1CE91"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE90</div></div><div class="grid-cell supported important" title="U+1CE91"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 560H360V380H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE91</div></div><div class="grid-cell supported unimportant" title="U+1CE92"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE91</div></div><div class="grid-cell supported important" title="U+1CE92"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 560H540V380H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE92</div></div><div class="grid-cell supported unimportant" title="U+1CE93"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE92</div></div><div class="grid-cell supported important" title="U+1CE93"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V380H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE93</div></div><div class="grid-cell supported unimportant" title="U+1CE94"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE93</div></div><div class="grid-cell supported important" title="U+1CE94"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 380H180V200H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE94</div></div><div class="grid-cell supported unimportant" title="U+1CE95"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE94</div></div><div class="grid-cell supported important" title="U+1CE95"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 380H360V200H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE95</div></div><div class="grid-cell supported unimportant" title="U+1CE96"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE95</div></div><div class="grid-cell supported important" title="U+1CE96"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 380H540V200H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE96</div></div><div class="grid-cell supported unimportant" title="U+1CE97"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE96</div></div><div class="grid-cell supported important" title="U+1CE97"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 380H720V200H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE97</div></div><div class="grid-cell supported unimportant" title="U+1CE98"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE97</div></div><div class="grid-cell supported important" title="U+1CE98"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 200H180V20H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE98</div></div><div class="grid-cell supported unimportant" title="U+1CE99"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE98</div></div><div class="grid-cell supported important" title="U+1CE99"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 200H360V20H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE99</div></div><div class="grid-cell supported unimportant" title="U+1CE9A"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE99</div></div><div class="grid-cell supported important" title="U+1CE9A"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 200H540V20H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9A</div></div><div class="grid-cell supported unimportant" title="U+1CE9B"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9A</div></div><div class="grid-cell supported important" title="U+1CE9B"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 200H720V20H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9B</div></div><div class="grid-cell supported unimportant" title="U+1CE9C"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9B</div></div><div class="grid-cell supported important" title="U+1CE9C"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9C</div></div><div class="grid-cell supported unimportant" title="U+1CE9D"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9C</div></div><div class="grid-cell supported important" title="U+1CE9D"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 20H360V-160H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9D</div></div><div class="grid-cell supported unimportant" title="U+1CE9E"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9D</div></div><div class="grid-cell supported important" title="U+1CE9E"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 20H540V-160H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9E</div></div><div class="grid-cell supported unimportant" title="U+1CE9F"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9E</div></div><div class="grid-cell supported important" title="U+1CE9F"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 20H720V-160H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9F</div></div></div><div class="grid-row"><div class="grid-row-header">1CEA</div><div class="grid-cell supported unimportant" title="U+1CEA0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9F</div></div></div><div class="grid-row"><div class="grid-row-header">1CEA</div><div class="grid-cell supported important" title="U+1CEA0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 20H720V-160H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA0</div></div><div class="grid-cell supported unimportant" title="U+1CEA1"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA0</div></div><div class="grid-cell supported important" title="U+1CEA1"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 20H720V-160H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA1</div></div><div class="grid-cell supported unimportant" title="U+1CEA2"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA1</div></div><div class="grid-cell supported important" title="U+1CEA2"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H540V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA2</div></div><div class="grid-cell supported unimportant" title="U+1CEA3"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA2</div></div><div class="grid-cell supported important" title="U+1CEA3"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H360V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA3</div></div><div class="grid-cell supported unimportant" title="U+1CEA4"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA3</div></div><div class="grid-cell supported important" title="U+1CEA4"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 200H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA4</div></div><div class="grid-cell supported unimportant" title="U+1CEA5"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA4</div></div><div class="grid-cell supported important" title="U+1CEA5"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 380H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA5</div></div><div class="grid-cell supported unimportant" title="U+1CEA6"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA5</div></div><div class="grid-cell supported important" title="U+1CEA6"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V20H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA6</div></div><div class="grid-cell supported unimportant" title="U+1CEA7"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA6</div></div><div class="grid-cell supported important" title="U+1CEA7"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V200H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA7</div></div><div class="grid-cell supported unimportant" title="U+1CEA8"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA7</div></div><div class="grid-cell supported important" title="U+1CEA8"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H360V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA8</div></div><div class="grid-cell supported unimportant" title="U+1CEA9"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA8</div></div><div class="grid-cell supported important" title="U+1CEA9"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H540V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA9</div></div><div class="grid-cell supported unimportant" title="U+1CEAA"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA9</div></div><div class="grid-cell supported important" title="U+1CEAA"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 560H720V380H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAA</div></div><div class="grid-cell supported unimportant" title="U+1CEAB"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAA</div></div><div class="grid-cell supported important" title="U+1CEAB"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 560H720V380H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAB</div></div><div class="grid-cell supported unimportant" title="U+1CEAC"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAB</div></div><div class="grid-cell supported important" title="U+1CEAC"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V200H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAC</div></div><div class="grid-cell supported unimportant" title="U+1CEAD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAC</div></div><div class="grid-cell supported important" title="U+1CEAD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V20H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAD</div></div><div class="grid-cell supported unimportant" title="U+1CEAE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAD</div></div><div class="grid-cell supported important" title="U+1CEAE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 380H720V-160H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAE</div></div><div class="grid-cell supported unimportant" title="U+1CEAF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAE</div></div><div class="grid-cell supported important" title="U+1CEAF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 200H720V-160H540Z" fill="currentColor"/>
   </g>
@@ -19391,131 +19445,131 @@ td.unknown {
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M40 520H320V360H40ZM400 520H680V360H400ZM40 280H320V120H40ZM400 280H680V120H400ZM40 40H320V-120H40ZM400 40H680V-120H400Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE8F</div></div></div><div class="grid-row row-unimportant"><div class="grid-row-header">1CE9</div><div class="grid-cell unsupported unimportant" title="U+1CE90"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE8F</div></div></div><div class="grid-row"><div class="grid-row-header">1CE9</div><div class="grid-cell unsupported important" title="U+1CE90"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE90</div></div><div class="grid-cell unsupported unimportant" title="U+1CE91"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE90</div></div><div class="grid-cell unsupported important" title="U+1CE91"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 560H360V380H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE91</div></div><div class="grid-cell unsupported unimportant" title="U+1CE92"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE91</div></div><div class="grid-cell unsupported important" title="U+1CE92"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 560H540V380H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE92</div></div><div class="grid-cell unsupported unimportant" title="U+1CE93"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE92</div></div><div class="grid-cell unsupported important" title="U+1CE93"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V380H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE93</div></div><div class="grid-cell unsupported unimportant" title="U+1CE94"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE93</div></div><div class="grid-cell unsupported important" title="U+1CE94"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 380H180V200H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE94</div></div><div class="grid-cell unsupported unimportant" title="U+1CE95"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE94</div></div><div class="grid-cell unsupported important" title="U+1CE95"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 380H360V200H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE95</div></div><div class="grid-cell unsupported unimportant" title="U+1CE96"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE95</div></div><div class="grid-cell unsupported important" title="U+1CE96"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 380H540V200H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE96</div></div><div class="grid-cell unsupported unimportant" title="U+1CE97"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE96</div></div><div class="grid-cell unsupported important" title="U+1CE97"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 380H720V200H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE97</div></div><div class="grid-cell unsupported unimportant" title="U+1CE98"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE97</div></div><div class="grid-cell unsupported important" title="U+1CE98"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 200H180V20H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE98</div></div><div class="grid-cell unsupported unimportant" title="U+1CE99"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE98</div></div><div class="grid-cell unsupported important" title="U+1CE99"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 200H360V20H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE99</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9A"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE99</div></div><div class="grid-cell unsupported important" title="U+1CE9A"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 200H540V20H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9A</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9B"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9A</div></div><div class="grid-cell unsupported important" title="U+1CE9B"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 200H720V20H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9B</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9C"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9B</div></div><div class="grid-cell unsupported important" title="U+1CE9C"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9C</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9D"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9C</div></div><div class="grid-cell unsupported important" title="U+1CE9D"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 20H360V-160H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9D</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9E"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9D</div></div><div class="grid-cell unsupported important" title="U+1CE9E"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 20H540V-160H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9E</div></div><div class="grid-cell unsupported unimportant" title="U+1CE9F"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9E</div></div><div class="grid-cell unsupported important" title="U+1CE9F"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 20H720V-160H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CE9F</div></div></div><div class="grid-row row-unimportant"><div class="grid-row-header">1CEA</div><div class="grid-cell unsupported unimportant" title="U+1CEA0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CE9F</div></div></div><div class="grid-row"><div class="grid-row-header">1CEA</div><div class="grid-cell unsupported important" title="U+1CEA0"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 20H720V-160H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA0</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA1"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA0</div></div><div class="grid-cell unsupported important" title="U+1CEA1"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 20H720V-160H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA1</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA2"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA1</div></div><div class="grid-cell unsupported important" title="U+1CEA2"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H540V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA2</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA3"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA2</div></div><div class="grid-cell unsupported important" title="U+1CEA3"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 20H360V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA3</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA4"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA3</div></div><div class="grid-cell unsupported important" title="U+1CEA4"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 200H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA4</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA5"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA4</div></div><div class="grid-cell unsupported important" title="U+1CEA5"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 380H180V-160H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA5</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA6"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA5</div></div><div class="grid-cell unsupported important" title="U+1CEA6"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V20H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA6</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA7"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA6</div></div><div class="grid-cell unsupported important" title="U+1CEA7"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H180V200H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA7</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA8"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA7</div></div><div class="grid-cell unsupported important" title="U+1CEA8"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H360V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA8</div></div><div class="grid-cell unsupported unimportant" title="U+1CEA9"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA8</div></div><div class="grid-cell unsupported important" title="U+1CEA9"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M0 560H540V380H0Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEA9</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAA"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEA9</div></div><div class="grid-cell unsupported important" title="U+1CEAA"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M180 560H720V380H180Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAA</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAB"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAA</div></div><div class="grid-cell unsupported important" title="U+1CEAB"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M360 560H720V380H360Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAB</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAC"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAB</div></div><div class="grid-cell unsupported important" title="U+1CEAC"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V200H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAC</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAC</div></div><div class="grid-cell unsupported important" title="U+1CEAD"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 560H720V20H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAD</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAD</div></div><div class="grid-cell unsupported important" title="U+1CEAE"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 380H720V-160H540Z" fill="currentColor"/>
   </g>
-</svg></div><div class="code">1CEAE</div></div><div class="grid-cell unsupported unimportant" title="U+1CEAF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
+</svg></div><div class="code">1CEAE</div></div><div class="grid-cell unsupported important" title="U+1CEAF"><div class="glyph"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 720">
   <g transform="translate(0, 560) scale(1, -1)">
     <path d="M540 200H720V-160H540Z" fill="currentColor"/>
   </g>

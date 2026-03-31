@@ -14,6 +14,9 @@
     margin: 0;
     padding: 0;
 }
+p {
+    margin-bottom: 1em;
+}
 body {
     font-family: monospace;
     background: var(--bg);
@@ -329,18 +332,24 @@ td.unknown {
 .grid-cell.unknown {
     background: var(--table-bg);
 }
+.char-grid-section .grid-cell.unimportant {
+    opacity: 1;
+}
+.char-grid-section.show-important .grid-cell.unimportant {
+    opacity: 0.3;
+}
 /* Reduce background opacity for unimportant cells when filtering */
 .char-grid-section.show-important .grid-cell.unimportant.supported {
-    background: rgba(61, 90, 61, 0.25);
+    background: rgba(61, 90, 61);
 }
 .char-grid-section.show-important .grid-cell.unimportant.unsupported {
-    background: rgba(90, 61, 61, 0.25);
+    background: rgba(90, 61, 61);
 }
 .char-grid-section.show-important .grid-cell.unimportant.partial {
-    background: rgba(90, 77, 61, 0.25);
+    background: rgba(90, 77, 61);
 }
 .char-grid-section.show-important .grid-cell.unimportant.unknown {
-    background: rgba(40, 40, 40, 0.25);
+    background: rgba(40, 40, 40);
 }
 .grid-cell .glyph {
     width: 28px;
