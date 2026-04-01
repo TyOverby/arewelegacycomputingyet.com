@@ -541,6 +541,10 @@ def render_demo_cell(char: str, svg_dirs: list[Path]) -> str:
         return f'<div class="demo-cell filled" data-cp="{hex_code}"></div>'
     elif cp == 0x258C:  # ▌ LEFT HALF BLOCK
         return f'<div class="demo-cell half-left" data-cp="{hex_code}"></div>'
+    elif cp == 0x2580:  # ▀ UPPER HALF BLOCK
+        return f'<div class="demo-cell half-top" data-cp="{hex_code}"></div>'
+    elif cp == 0x2584:  # ▄ LOWER HALF BLOCK
+        return f'<div class="demo-cell half-bottom" data-cp="{hex_code}"></div>'
     elif cp == 0x2B24:  # ⬤ LARGE BLACK CIRCLE
         return f'<div class="demo-cell circle" data-cp="{hex_code}"></div>'
     elif char.strip() == "":
