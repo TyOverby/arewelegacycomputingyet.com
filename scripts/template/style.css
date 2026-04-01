@@ -383,6 +383,12 @@ td.unknown {
 }
 .demo-item {
     margin-bottom: 2rem;
+    display: inline-block;
+    width: 400px;
+    background: #282828;
+    border: 1px solid #3d3836;
+    margin: 1em;
+    padding: 0.5em;
 }
 .demo-grid {
     display: block;

@@ -390,6 +390,12 @@ td.unknown {
 }
 .demo-item {
     margin-bottom: 2rem;
+    display: inline-block;
+    width: 400px;
+    background: #282828;
+    border: 1px solid #3d3836;
+    margin: 1em;
+    padding: 0.5em;
 }
 .demo-grid {
     display: block;
@@ -484,15 +490,6 @@ td.unknown {
             </a>
             elements on the terminal's text grid, and were used to display
             pictures, render games, and enhance terminal UIs.
-        </p>
-        <p>
-            Despite its age, terminal usage is more popular than ever, with many
-            developers using modern text based tools like neovim and
-            claude-code. The modern generation of terminal UI could benefit from
-            many of the graphical elements in these blocks to provide high
-            fidelity output and a more readable UI. However, support for these
-            characters isn't universal, and some terminals and fonts don't
-            support them all.
         </p>
 
         <h1>Demos</h1>
@@ -902,50 +899,6 @@ Or graphical symbols
 <g transform="translate(0, 560) scale(1, -1)">
 <path d="M0 560H360V320H720V-160H0Z" fill="currentColor"></path>
 </g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1CDE5"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M360 560H720V-160H0V380H360Z" fill="currentColor"></path>
-</g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1CDBB"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M0 200H360V20H720V-160H0Z" fill="currentColor"></path>
-</g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1CDBB"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M0 200H360V20H720V-160H0Z" fill="currentColor"></path>
-</g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1FB1E"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M360 80H720V-160H360Z" fill="currentColor"></path>
-</g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1CDBF"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M0 380H360V20H720V-160H0Z" fill="currentColor"></path>
-</g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1FB3B"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M360 560H720V-160H0V320H360Z" fill="currentColor"></path>
-</g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1CEA0"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M360 20H720V-160H360Z" fill="currentColor"></path>
-</g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1CDD5"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M360 560H720V-160H0V20H360Z" fill="currentColor"></path>
-</g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1CDC0"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M0 560H360V20H720V-160H0Z" fill="currentColor"></path>
-</g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1FB39"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M0 320H720V-160H0Z" fill="currentColor"></path>
-</g>
-</svg></div><div class="demo-cell glyph" data-cp="U+1CDDE"><svg viewbox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(0, 560) scale(1, -1)">
-<path d="M0 380H360V200H720V-160H0Z" fill="currentColor"></path>
-</g>
 </svg></div></div>
 </div>
 </div><div class="demo-item"><h2>Corner styles for UI elements</h2>
@@ -1050,8 +1003,8 @@ games.
         <p>
             <i>
                 <b>
-                    These are unicode characters, why are you talking about
-                    terminal emulator support?
+                    These are unicode characters, why is this section concerned with
+                    terminal emulators?  Shouldn't this be "font support"?
                 </b>
             </i>
             <br />
@@ -1061,9 +1014,8 @@ games.
             custom drawing routines for them instead. But there's another
             benefit to having the terminal draw the glyphs: the paths can be
             customized to the users display settings, allowing graphical
-            elements to properly connect to one another even if the other glyphs
-            drawn by the terminal have generous padding between characters or
-            lines.
+            elements to properly connect to one another even if the terminal
+            would otherwise add padding between glyphs.
         </p>
 
         <p>
@@ -1104,6 +1056,258 @@ games.
             >.
         </p>
 
+        
+    <div class="overview-section">
+        <h2>Overview</h2>
+        <div class="table-scroll">
+            <table class="overview-table">
+                <thead>
+                    <tr>
+                        <th>Emulator</th>
+                        <th>Legacy Computing<br><span class="unicode-range">U+1FB00-U+1FBFF</span></th>
+                        <th>Legacy Computing Supplement<br><span class="unicode-range">U+1CC00-U+1CEBF</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="emulator-name">ghostty</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 81.3%">
+                <div class="progress-fill" style="width: 100.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 18.7%">
+                <div class="progress-fill" style="width: 19.1%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">100%</span>
+            <span class="label-all">85%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 99.5%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 1.2%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">99%</span>
+            <span class="label-all">53%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">kitty</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 81.3%">
+                <div class="progress-fill" style="width: 84.3%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 18.7%">
+                <div class="progress-fill" style="width: 29.8%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">84%</span>
+            <span class="label-all">74%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 62.8%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">63%</span>
+            <span class="label-all">33%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">urxvt</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 81.3%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 18.7%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">0%</span>
+            <span class="label-all">0%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">0%</span>
+            <span class="label-all">0%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">vte</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 81.3%">
+                <div class="progress-fill" style="width: 94.1%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 18.7%">
+                <div class="progress-fill" style="width: 51.1%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">94%</span>
+            <span class="label-all">86%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 78.7%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 0.6%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">79%</span>
+            <span class="label-all">42%</span>
+        </div>
+    </td></tr><tr><td class="emulator-name">xtermjs</td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 81.3%">
+                <div class="progress-fill" style="width: 100.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 18.7%">
+                <div class="progress-fill" style="width: 55.3%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">100%</span>
+            <span class="label-all">92%</span>
+        </div>
+    </td><td class="progress-cell">
+        <div class="progress-bar">
+            <div class="progress-segment important" style="width: 52.7%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+            <div class="progress-marker"></div>
+            <div class="progress-segment non-important" style="width: 47.3%">
+                <div class="progress-fill" style="width: 0.0%"></div>
+            </div>
+        </div>
+        <div class="progress-labels">
+            <span class="label-important">0%</span>
+            <span class="label-all">0%</span>
+        </div>
+    </td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+     
+        <div>
+        <h2> To summarize </h2>
+
+          <ul>
+              <li><b>Ghostty</b> is killing it.</li>
+              <li><b>Kitty</b> and <b>libvte</b>-based terminals (e.g. gnome-terminal and xfce's terminal) have excellent support for Legacy Computing and support the most important part of the Suppliment (the octant characters).</li>
+              <li><b>urxvt</b> (and presumably it's entire family of terminals) support nothing.</li>
+              <li><b>xtermjs</b> has great coverage of Legacy Computing, but sadly no support for anything in the Suppliment</li>
+          </ul>
+        </div>
+
+
+        
+    <div class="table-section show-important" data-section="main">
+        <div class="section-header">
+            <h2>Symbols for Legacy Computing (U+1FB00-U+1FBFF)</h2>
+            <div class="filter-toggle">
+                <button class="filter-btn active" data-filter="important">Important</button>
+                <button class="filter-btn" data-filter="all">All</button>
+            </div>
+        </div>
+        <div class="table-scroll">
+            
+        <table id="main-all" class="table-all">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Smooth mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="partial">95%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Window title bar</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Rectangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Diagonal fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Triangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Character cell diagonals</td><td class="full">100%</td><td class="partial">48%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Light solid line with stroke</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Terminal graphic</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">39%</td><td class="partial">48%</td></tr><tr><td>Arrows</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">40%</td><td class="partial">40%</td></tr><tr><td>Negative terminal graphic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="partial">33%</td><td class="partial">33%</td></tr><tr><td>Geometric shapes</td><td class="full">100%</td><td class="partial">12%</td><td class="none">0%</td><td class="partial">25%</td><td class="full">100%</td></tr><tr><td>Segmented digits</td><td class="none">0%</td><td class="partial">50%</td><td class="none">0%</td><td class="partial">50%</td><td class="partial">50%</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>85%</strong></td><td class="total"><strong>74%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>86%</strong></td><td class="total"><strong>91%</strong></td></tr>
+            </tbody>
+        </table>
+    
+            
+        <table id="main-important" class="table-important">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Smooth mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="partial">95%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Rectangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Diagonal fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Character cell diagonals</td><td class="full">100%</td><td class="partial">48%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Geometric shapes</td><td class="full">100%</td><td class="partial">12%</td><td class="none">0%</td><td class="partial">25%</td><td class="full">100%</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>100%</strong></td><td class="total"><strong>84%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>94%</strong></td><td class="total"><strong>100%</strong></td></tr>
+            </tbody>
+        </table>
+    
+        </div>
+    </div>
+    
+    <div class="table-section show-important" data-section="supplement">
+        <div class="section-header">
+            <h2>Legacy Computing Supplement (U+1CC00-U+1CEBF)</h2>
+            <div class="filter-toggle">
+                <button class="filter-btn active" data-filter="important">Important</button>
+                <button class="filter-btn" data-filter="all">All</button>
+            </div>
+        </div>
+        <div class="table-scroll">
+            
+        <table id="supplement-all" class="table-all">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Game sprites</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Rule segments</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Schematic symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Box drawing</td><td class="partial">80%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Fill</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Emoticon</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Terminal graphic</td><td class="partial">11%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">6%</td><td class="none">0%</td></tr><tr><td>Lines with tick marks</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Faces</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Icons</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Chess symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Outlined uppercase Latin alphabet</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Outlined digits</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Dashed lines</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Large type pieces</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Smalltalk symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>53%</strong></td><td class="total"><strong>33%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>42%</strong></td><td class="total"><strong>0%</strong></td></tr>
+            </tbody>
+        </table>
+    
+            
+        <table id="supplement-important" class="table-important">
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Box drawing</td><td class="partial">80%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr>
+                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>99%</strong></td><td class="total"><strong>63%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>79%</strong></td><td class="total"><strong>0%</strong></td></tr>
+            </tbody>
+        </table>
+    
+        </div>
+    </div>
+    
         
     <div class="char-grid-section show-important">
         <div class="section-header">
@@ -20023,244 +20227,6 @@ games.
         </div>
     </div>
      
-    <div class="overview-section">
-        <h2>Overview</h2>
-        <div class="table-scroll">
-            <table class="overview-table">
-                <thead>
-                    <tr>
-                        <th>Emulator</th>
-                        <th>Legacy Computing<br><span class="unicode-range">U+1FB00-U+1FBFF</span></th>
-                        <th>Legacy Computing Supplement<br><span class="unicode-range">U+1CC00-U+1CEBF</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td class="emulator-name">ghostty</td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 81.3%">
-                <div class="progress-fill" style="width: 100.0%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 18.7%">
-                <div class="progress-fill" style="width: 19.1%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">100%</span>
-            <span class="label-all">85%</span>
-        </div>
-    </td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 52.7%">
-                <div class="progress-fill" style="width: 99.5%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 47.3%">
-                <div class="progress-fill" style="width: 1.2%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">99%</span>
-            <span class="label-all">53%</span>
-        </div>
-    </td></tr><tr><td class="emulator-name">kitty</td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 81.3%">
-                <div class="progress-fill" style="width: 84.3%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 18.7%">
-                <div class="progress-fill" style="width: 29.8%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">84%</span>
-            <span class="label-all">74%</span>
-        </div>
-    </td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 52.7%">
-                <div class="progress-fill" style="width: 62.8%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 47.3%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">63%</span>
-            <span class="label-all">33%</span>
-        </div>
-    </td></tr><tr><td class="emulator-name">urxvt</td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 81.3%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 18.7%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">0%</span>
-            <span class="label-all">0%</span>
-        </div>
-    </td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 52.7%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 47.3%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">0%</span>
-            <span class="label-all">0%</span>
-        </div>
-    </td></tr><tr><td class="emulator-name">vte</td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 81.3%">
-                <div class="progress-fill" style="width: 94.1%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 18.7%">
-                <div class="progress-fill" style="width: 51.1%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">94%</span>
-            <span class="label-all">86%</span>
-        </div>
-    </td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 52.7%">
-                <div class="progress-fill" style="width: 78.7%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 47.3%">
-                <div class="progress-fill" style="width: 0.6%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">79%</span>
-            <span class="label-all">42%</span>
-        </div>
-    </td></tr><tr><td class="emulator-name">xtermjs</td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 81.3%">
-                <div class="progress-fill" style="width: 100.0%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 18.7%">
-                <div class="progress-fill" style="width: 55.3%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">100%</span>
-            <span class="label-all">92%</span>
-        </div>
-    </td><td class="progress-cell">
-        <div class="progress-bar">
-            <div class="progress-segment important" style="width: 52.7%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-            <div class="progress-marker"></div>
-            <div class="progress-segment non-important" style="width: 47.3%">
-                <div class="progress-fill" style="width: 0.0%"></div>
-            </div>
-        </div>
-        <div class="progress-labels">
-            <span class="label-important">0%</span>
-            <span class="label-all">0%</span>
-        </div>
-    </td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-     
-    <div class="table-section show-important" data-section="main">
-        <div class="section-header">
-            <h2>Symbols for Legacy Computing (U+1FB00-U+1FBFF)</h2>
-            <div class="filter-toggle">
-                <button class="filter-btn active" data-filter="important">Important</button>
-                <button class="filter-btn" data-filter="all">All</button>
-            </div>
-        </div>
-        <div class="table-scroll">
-            
-        <table id="main-all" class="table-all">
-            <thead>
-                <tr>
-                    <th>Section</th>
-                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Smooth mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="partial">95%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Window title bar</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Rectangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Diagonal fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Triangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Character cell diagonals</td><td class="full">100%</td><td class="partial">48%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Light solid line with stroke</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Terminal graphic</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">39%</td><td class="partial">48%</td></tr><tr><td>Arrows</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">40%</td><td class="partial">40%</td></tr><tr><td>Negative terminal graphic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="partial">33%</td><td class="partial">33%</td></tr><tr><td>Geometric shapes</td><td class="full">100%</td><td class="partial">12%</td><td class="none">0%</td><td class="partial">25%</td><td class="full">100%</td></tr><tr><td>Segmented digits</td><td class="none">0%</td><td class="partial">50%</td><td class="none">0%</td><td class="partial">50%</td><td class="partial">50%</td></tr>
-                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>85%</strong></td><td class="total"><strong>74%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>86%</strong></td><td class="total"><strong>91%</strong></td></tr>
-            </tbody>
-        </table>
-    
-            
-        <table id="main-important" class="table-important">
-            <thead>
-                <tr>
-                    <th>Section</th>
-                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Smooth mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="partial">95%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Rectangular shade</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Diagonal fill</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Character cell diagonals</td><td class="full">100%</td><td class="partial">48%</td><td class="none">0%</td><td class="full">100%</td><td class="full">100%</td></tr><tr><td>Geometric shapes</td><td class="full">100%</td><td class="partial">12%</td><td class="none">0%</td><td class="partial">25%</td><td class="full">100%</td></tr>
-                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>100%</strong></td><td class="total"><strong>84%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>94%</strong></td><td class="total"><strong>100%</strong></td></tr>
-            </tbody>
-        </table>
-    
-        </div>
-    </div>
-    
-    <div class="table-section show-important" data-section="supplement">
-        <div class="section-header">
-            <h2>Legacy Computing Supplement (U+1CC00-U+1CEBF)</h2>
-            <div class="filter-toggle">
-                <button class="filter-btn active" data-filter="important">Important</button>
-                <button class="filter-btn" data-filter="all">All</button>
-            </div>
-        </div>
-        <div class="table-scroll">
-            
-        <table id="supplement-all" class="table-all">
-            <thead>
-                <tr>
-                    <th>Section</th>
-                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Game sprites</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Rule segments</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Schematic symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Box drawing</td><td class="partial">80%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Fill</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Emoticon</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Terminal graphic</td><td class="partial">11%</td><td class="none">0%</td><td class="none">0%</td><td class="partial">6%</td><td class="none">0%</td></tr><tr><td>Lines with tick marks</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Faces</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Icons</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Chess symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Outlined uppercase Latin alphabet</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Outlined digits</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Dashed lines</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Large type pieces</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Smalltalk symbols</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr>
-                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>53%</strong></td><td class="total"><strong>33%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>42%</strong></td><td class="total"><strong>0%</strong></td></tr>
-            </tbody>
-        </table>
-    
-            
-        <table id="supplement-important" class="table-important">
-            <thead>
-                <tr>
-                    <th>Section</th>
-                    <th>ghostty</th><th>kitty</th><th>urxvt</th><th>vte</th><th>xtermjs</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Box drawing</td><td class="partial">80%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Separated mosaic</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td><td class="none">0%</td></tr><tr><td>Circle segments</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block mosaic</td><td class="full">100%</td><td class="full">100%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr><tr><td>Block elements</td><td class="full">100%</td><td class="none">0%</td><td class="none">0%</td><td class="full">100%</td><td class="none">0%</td></tr>
-                <tr class='totals-row'><td><strong>Total</strong></td><td class="total"><strong>99%</strong></td><td class="total"><strong>63%</strong></td><td class="total"><strong>0%</strong></td><td class="total"><strong>79%</strong></td><td class="total"><strong>0%</strong></td></tr>
-            </tbody>
-        </table>
-    
-        </div>
-    </div>
-    
 
         <footer>
             <a href="https://github.com/tyoverby/arewelegacycomputingyet.com"

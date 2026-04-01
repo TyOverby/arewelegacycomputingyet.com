@@ -34,15 +34,6 @@
             elements on the terminal's text grid, and were used to display
             pictures, render games, and enhance terminal UIs.
         </p>
-        <p>
-            Despite its age, terminal usage is more popular than ever, with many
-            developers using modern text based tools like neovim and
-            claude-code. The modern generation of terminal UI could benefit from
-            many of the graphical elements in these blocks to provide high
-            fidelity output and a more readable UI. However, support for these
-            characters isn't universal, and some terminals and fonts don't
-            support them all.
-        </p>
 
         <h1>Demos</h1>
         <p>
@@ -58,8 +49,8 @@
         <p>
             <i>
                 <b>
-                    These are unicode characters, why are you talking about
-                    terminal emulator support?
+                    These are unicode characters, why is this section concerned with
+                    terminal emulators?  Shouldn't this be "font support"?
                 </b>
             </i>
             <br />
@@ -69,9 +60,8 @@
             custom drawing routines for them instead. But there's another
             benefit to having the terminal draw the glyphs: the paths can be
             customized to the users display settings, allowing graphical
-            elements to properly connect to one another even if the other glyphs
-            drawn by the terminal have generous padding between characters or
-            lines.
+            elements to properly connect to one another even if the terminal
+            would otherwise add padding between glyphs.
         </p>
 
         <p>
@@ -112,7 +102,21 @@
             >.
         </p>
 
-        {{CHAR_GRIDS}} {{OVERVIEW}} {{TABLES}}
+        {{OVERVIEW}} 
+        <div>
+        <h2> To summarize </h2>
+
+          <ul>
+              <li><b>Ghostty</b> is killing it.</li>
+              <li><b>Kitty</b> and <b>libvte</b>-based terminals (e.g. gnome-terminal and xfce's terminal) have excellent support for Legacy Computing and support the most important part of the Suppliment (the octant characters).</li>
+              <li><b>urxvt</b> (and presumably it's entire family of terminals) support nothing.</li>
+              <li><b>xtermjs</b> has great coverage of Legacy Computing, but sadly no support for anything in the Suppliment</li>
+          </ul>
+        </div>
+
+
+        {{TABLES}}
+        {{CHAR_GRIDS}} 
 
         <footer>
             <a href="https://github.com/tyoverby/arewelegacycomputingyet.com"
