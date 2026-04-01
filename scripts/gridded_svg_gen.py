@@ -56,6 +56,8 @@ def render_cell(char: str, svg_dirs: list[Path]) -> str:
         return f'<div class="cell filled" data-cp="{cp_str}"></div>'
     elif cp == 0x258C:  # ▌ LEFT HALF BLOCK
         return f'<div class="cell half-left" data-cp="{cp_str}"></div>'
+    elif cp == 0x2582:  # ▂ LOWER ONE QUARTER BLOCK
+        return f'<div class="cell lower-quarter" data-cp="{cp_str}"></div>'
     elif cp == 0x2B24:  # ⬤ LARGE BLACK CIRCLE
         return f'<div class="cell circle" data-cp="{cp_str}"></div>'
     elif char.strip() == "":
@@ -159,6 +161,9 @@ def generate_html(text_path: Path, svg_dirs: list[Path]) -> str:
   }}
   .cell.half-left {{
     background: linear-gradient(to right, var(--fg) 50%, transparent 50%);
+  }}
+  .cell.lower-quarter {{
+    background: linear-gradient(to top, var(--fg) 25%, transparent 25%);
   }}
   .cell.circle {{
     background: radial-gradient(circle, var(--fg) 50%, transparent 50%);

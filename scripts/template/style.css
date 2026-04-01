@@ -428,6 +428,9 @@ td.unknown {
 .demo-cell.half-bottom {
     background: linear-gradient(to top, var(--fg) 50%, transparent 50%);
 }
+.demo-cell.lower-quarter {
+    background: linear-gradient(to top, var(--fg) 25%, transparent 25%);
+}
 .demo-cell.circle {
     background: radial-gradient(circle, var(--fg) 15px, transparent 15px);
 }
